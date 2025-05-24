@@ -40,19 +40,30 @@ const server = http.createServer(async (req, res) => {
 
   // GET /produtos/:id → Busca por ID
   if (url.startsWith("/produtos/") && method === "GET") {
+    const cleanUrl = url.split("?")[0];
     const id = url.split("/")[2];
+
+    console.log("GET /produtos/id chamado com id = ",id)
+
+    if (!id || id.trim() === "") {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: "ID inválido" }));
+      return;
+    }
+
     try {
       const produto = await buscarProdutoPorId(id);
-      if (!produto) {
-        res.writeHead(404);
-        res.end(JSON.stringify({ error: "Produto não encontrado" }));
-        return;
-      }
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(produto));
     } catch (error) {
-      res.writeHead(500);
-      res.end(JSON.stringify({ error: "Erro ao buscar produto" }));
+      console.error("Erro ao buscar produto:", error.message);
+      if (error.message === "Produto não encontrado!") {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: "Produto não encontrado" }));
+      } else {
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: "Erro ao buscar produto" }));
+      }
     }
     return;
   }
