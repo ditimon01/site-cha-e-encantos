@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/API.js",
-    "start": "node src/server.js"
+    "dev": "node APIs/API.js",
+    "start": "node APIs/server.js"
   },
   "repository": {
     "type": "git",
