@@ -110,9 +110,12 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  app.get('/', (req, res) => {
-  res.send('API Chá & Encantos funcionando 🍵✨');
-});
+  
+  if(url === "/" && method === "GET"){
+    res.writeHead(200, {"Content-Type": "aplication.json"});
+    res.end(JSON.stringify({ mensagem: "API Chá & Encantos funcionando"}));
+    return;
+  }
 
 
   // Rota não encontrada
