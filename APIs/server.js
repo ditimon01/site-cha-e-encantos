@@ -109,14 +109,12 @@ const server = http.createServer(async (req, res) => {
   }
 
   // DELETE /produtos/:id → Deletar
-
   if (url.startsWith("/produtos/") && method === "DELETE") {
 
     try {
-    await verificarAutenticacao(req);
-    // segue o código da rota normalmente
+    await verificarAdmin(req);
     } catch (error) {
-      res.writeHead(401, { "Content-Type": "application/json" });
+      res.writeHead(403, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: error.message }));
       return;
     }
