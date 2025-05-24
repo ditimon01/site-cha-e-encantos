@@ -1,0 +1,24 @@
+{
+  "name": "site-cha-e-encantos",
+  "version": "1.0.0",
+  "description": "Site desenvolvido para o projeto acadêmico Chá &amp; Encantos, uma loja temática de chás, com proposta sensorial, naturalista e acolhedora.",
+  "main": "API.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/API.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ditimon01/site-cha-e-encantos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ditimon01/site-cha-e-encantos/issues"
+  },
+  "homepage": "https://github.com/ditimon01/site-cha-e-encantos#readme",
+  "dependencies": {
+    "firebase": "^11.8.1"
+  }
+}
