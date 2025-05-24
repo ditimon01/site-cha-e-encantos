@@ -43,8 +43,6 @@ const server = http.createServer(async (req, res) => {
     const cleanUrl = url.split("?")[0];
     const id = cleanUrl.split("/")[2];
 
-    console.log("GET /produtos/id chamado com id = ",id)
-
     if (!id || id.trim() === "") {
       res.writeHead(400);
       res.end(JSON.stringify({ error: "ID inválido" }));
@@ -62,7 +60,7 @@ const server = http.createServer(async (req, res) => {
         res.end(JSON.stringify({ error: "Produto não encontrado" }));
       } else {
         res.writeHead(500);
-        res.end(JSON.stringify({ error: "Erro ao buscar produto" }));
+        res.end(JSON.stringify({ error: "Erro interno ao buscar produto", detalhe: error.message }));
       }
     }
     return;
