@@ -12,6 +12,8 @@
 
   <button id="loginGoogle">Entrar com Google</button>
   <button id="fazerPost" disabled>Fazer POST para API</button>
+  <button id="buscarProduto">Buscar Produto por ID</button>
+  <button id="deletarProduto" disabled>Deletar Produto</button>
 
   <script>
     // Config do seu Firebase (substitua pelos seus dados)
@@ -38,6 +40,8 @@
         idToken = await user.getIdToken();
         alert(`Logado como: ${user.email}`);
         document.getElementById('fazerPost').disabled = false;
+        document.getElementById('deletarProduto').disabled = false;
+        document.getElementById('buscarProduto').disabled = false;
       } catch (error) {
         alert('Erro no login: ' + error.message);
       }
@@ -71,6 +75,67 @@
         alert('Erro na requisição: ' + error.message);
       }
     };
-  </script>
+
+    document.getElementById('deletarProduto').onclick = async () => {
+        if (!idToken) {
+            alert('Faça login primeiro!');
+            return;
+        }
+
+        const id = prompt("Digite o ID do produto que deseja deletar:");
+
+        if (!id) {
+            alert('ID não informado');
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://site-cha-e-encantos-production.up.railway.app/produtos/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + idToken
+            }
+            });
+
+            const json = await response.json();
+
+            if (response.ok) {
+            alert('Produto deletado com sucesso: ' + JSON.stringify(json));
+            } else {
+            alert('Erro: ' + JSON.stringify(json));
+            }
+        
+        } catch (error) {
+        alert('Erro na requisição: ' + error.message);
+    }
+    };
+
+    document.getElementById('buscarProduto').onclick = async () => {
+    const id = prompt("Digite o ID do produto que deseja buscar:");
+
+    if (!id) {
+      alert('ID não informado');
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://site-cha-e-encantos-production.up.railway.app/produtos/${id}`, {
+        method: 'GET'
+      });
+
+      if (response.ok) {
+        const produto = await response.json();
+        alert('Produto encontrado:\n' + JSON.stringify(produto, null, 2));
+      } else if (response.status === 404) {
+        alert('Produto não encontrado.');
+      } else {
+        const error = await response.json();
+        alert('Erro: ' + JSON.stringify(error));
+      }
+    } catch (error) {
+      alert('Erro na requisição: ' + error.message);
+    }
+    };
+    </script>
 </body>
 </html>
