@@ -5,7 +5,7 @@ import {
   buscarProdutoPorId,
   atualizarProduto,
   deletarProduto,
-} from "./API.js";
+} from "./cadastroProdutos/API.js";
 
 const port = process.env.PORT || 3000;
 

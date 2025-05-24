@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Cadastro de Produto - Chá & Encantos</title>
-</head>
-<body>
-  <h1>Cadastro de Produto 🍵✨</h1>
-
-  <form id="formProduto">
-    <label>Nome:</label><br>
-    <input type="text" id="nome" required><br><br>
-
-    <label>Preço:</label><br>
-    <input type="number" id="preco" step="0.01" required><br><br>
-
-    <label>Descrição:</label><br>
-    <input type="text" id="descricao" required><br><br>
-
-    <label>Estoque:</label><br>
-    <input type="number" id="estoque" required><br><br>
-
-    <button type="submit">Cadastrar Produto</button>
-  </form>
-
-  <p id="mensagem"></p>
-
-  <script>
-    const form = document.getElementById('formProduto');
+ const form = document.getElementById('formProduto');
     const mensagem = document.getElementById('mensagem');
 
     form.addEventListener('submit', async (e) => {
@@ -59,7 +31,3 @@
         mensagem.innerText = 'Erro na requisição: ' + error;
       }
     });
-  </script>
-
-</body>
-</html>
