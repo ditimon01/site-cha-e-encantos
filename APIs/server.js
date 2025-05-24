@@ -7,6 +7,8 @@ import {
   deletarProduto,
 } from "./API.js";
 
+import { verificarAutenticacao } from "./admin.js";
+
 const port = process.env.PORT || 3000;
 
 const server = http.createServer(async (req, res) => {
@@ -16,7 +18,7 @@ const server = http.createServer(async (req, res) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS"
   );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Responde pré-requests de CORS //nao sabemos ainda oq é.
   if (req.method === "OPTIONS") {
@@ -57,6 +59,16 @@ const server = http.createServer(async (req, res) => {
 
   // POST /produtos → Cadastrar
   if (url === "/produtos" && method === "POST") {
+
+    try {
+    await verificarAutenticacao(req);
+    // segue o código da rota normalmente
+    } catch (error) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: error.message }));
+      return;
+    }
+
     let body = "";
     req.on("data", (chunk) => {
       body += chunk;
@@ -97,7 +109,18 @@ const server = http.createServer(async (req, res) => {
   }
 
   // DELETE /produtos/:id → Deletar
+
   if (url.startsWith("/produtos/") && method === "DELETE") {
+
+    try {
+    await verificarAutenticacao(req);
+    // segue o código da rota normalmente
+    } catch (error) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: error.message }));
+      return;
+    }
+
     const id = url.split("/")[2];
     try {
       await deletarProduto(id);
