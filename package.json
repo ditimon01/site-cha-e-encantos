@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Site desenvolvido para o projeto acadêmico Chá &amp; Encantos, uma loja temática de chás, com proposta sensorial, naturalista e acolhedora.",
   "main": "API.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/API.js"
+    "dev": "node src/API.js",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
