@@ -1,8 +1,8 @@
 
 
-import { doc } from "firebase/firestore/lite";
 import { db } from "../firebase.js";
-import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
+
 const colecao = "produtos";
 
 //cria (adicionar)
@@ -26,6 +26,7 @@ export async function buscarProdutoPorId(id) {
   try{
     const docRef = doc(db, colecao, id);
     const docSnap = await getDoc(docRef);
+    
     if (docSnap.exists()) {
       return { id: docSnap.id, ...docSnap.data() };
     } else {
