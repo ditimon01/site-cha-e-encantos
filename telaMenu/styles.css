@@ -19,15 +19,16 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: white;
-
+    background-color: #fbf3e4;
 }
 
-.logo{
+.logo img{
     font-family: Playfair display, serif;
     font-size: 1.8rem;
-    color: #2D4C36
-}
+    color: #2D4C36;
+    height: 150px;
+    display: block;
+  }
 
 .search-box input{
     width: 300px;
@@ -136,18 +137,34 @@ body{
 .sidebar h2 {
   margin-top: 0;
   font-size: 1.2rem;
-  color: #2D4C36;
+  color: #4c312d;
+  margin-bottom: 0.7rem;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+
 }
 
 .sidebar li {
   margin: 0.5rem 0;
   color: #835C3B;
   cursor: pointer;
+  
+
+}
+
+.sidebar li:hover {
+  color: #4c312d;
+  text-decoration: underline;
+}
+
+
+
+.sidebar a {
+  text-decoration: none;
+
 }
 
 .overlay {
@@ -163,5 +180,10 @@ body{
 
 .overlay.active {
   display: block;
+}
+
+.footer p{
+    
+   align-items: center;
 }
 
