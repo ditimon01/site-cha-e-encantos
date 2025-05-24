@@ -7,7 +7,7 @@ import {
   deletarProduto,
 } from "./API.js";
 
-import { verificarAutenticacao } from "./admin.js";
+import { verificarAutenticacao, verificarAdmin } from "./admin.js";
 
 const port = process.env.PORT || 3000;
 
@@ -41,7 +41,7 @@ const server = http.createServer(async (req, res) => {
   // GET /produtos/:id → Busca por ID
   if (url.startsWith("/produtos/") && method === "GET") {
     const cleanUrl = url.split("?")[0];
-    const id = url.split("/")[2];
+    const id = cleanUrl.split("/")[2];
 
     console.log("GET /produtos/id chamado com id = ",id)
 
