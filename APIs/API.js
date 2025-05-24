@@ -23,12 +23,17 @@ export async function listarProdutos() {
 
 //ler um produto pelo ID
 export async function buscarProdutoPorId(id) {
-  const docRef = doc(db, colecao, id);
-  const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    return { id: docSnap.id, ...docSnap.data() };
-  } else {
-    throw new Error("Produto não encontrado!");
+  try{
+    const docRef = doc(db, colecao, id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() };
+    } else {
+      throw new Error("Produto não encontrado!");
+    }
+  } catch (error) {
+    console.error("Erro buscarProdutoPorId: ", error);
+    throw new Error(error.message || "Erro desconhecido");
   }
 }
 
