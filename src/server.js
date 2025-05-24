@@ -112,8 +112,8 @@ const server = http.createServer(async (req, res) => {
 
   
   if(url === "/" && method === "GET"){
-    res.writeHead(200, {"Content-Type": "aplication.json"});
-    res.end(JSON.stringify({ mensagem: "API Chá & Encantos funcionando"}));
+    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+    res.end(JSON.stringify({ mensagem: "API Chá & Encantos funcionando 🍵✨" }));
     return;
   }
 
