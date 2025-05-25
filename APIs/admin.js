@@ -1,23 +1,19 @@
 import { initializeApp, cert } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import 'dotenv/config';
-import fs from 'fs';
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 
-const serviceAccount = JSON.parse(
-  fs.readFileSync('./APIs/chave.json')
-)
-
-initializeApp({
-  credential: cert(serviceAccount),
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
 });
 
-const auth = getAuth();
+export const adminAuth = getAuth();
 
 const listaAdmins = [
   'fonsecavinicius12@gmail.com'
 ];
-
 
 export async function verificarAutenticacao(req) {
   const authHeader = req.headers['authorization'];
