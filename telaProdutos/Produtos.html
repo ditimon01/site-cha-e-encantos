@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class ="top-bar">
+        <div>@chaeencantos</div>
+        <div>WhatsApp: (99)99999-9999</div>
+    </div>
+
+    <div class="header">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="logo"><a href="../telaMenu/Menu.html"><img src="../assets/logo.png" alt="logo"></a></div>
+        <div class="search-box">
+            <input type="text" placeholder="Busque seu chá encantado...">
+        </div>
+        <div class ="icons">
+            <div>
+                <img src="../assets/ajuda.png" alt="">
+                <span>Dúvidas</span>
+            </div>
+            <div>
+                <img class="grande" src="../assets/estrela.png" alt="">
+                <span>Favoritos</span>
+            </div>
+            <div>
+                <img class="grande" src="../assets/conta.png" alt="">
+                <span>Minha Conta</span>
+            </div>
+            <div >
+                <img src="../assets/cesta.png" alt="">
+                <span>Cesta de compras</span>
+            </div>
+        </div>
+    </div>
+
+
+    <aside class="sidebar" id="sidebar">
+        <h2>Categorias</h2>
+        <ul>
+            <li><a href="../telaProdutos/Produtos.html?categoria=digestivos">Digestivos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=antioxidante">Antioxidantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=diurético">Diuréticos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=calmante">Calmantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=isotônico">Isotônicos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=chá da vovó">Chás da Vovó</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=detox">Detox</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=energizante">Energizantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=imunidade">Imunidade</a></li>
+            <br>
+        </ul>
+        <h2>Ajuda</h2>
+        <ul>
+            <br>
+            <li>Contato</li>
+            <br>
+            <li>Ajuda</li>
+            <br>
+            <li>Sobre Nós</li>
+            <br>
+            <li>Política de Privacidade</li>
+            <br>
+            <li>Termos de Uso</li>
+            <br>
+        </ul>
+
+    </aside>
+
+        <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+
+    <div class="produtos-container">
+    <h2>Nossos Produtos</h2>
+
+    <div class="filtros">
+        <label for="categoria">Filtrar por categoria:</label>
+        <div id="categoria"></div>
+    </div>
+
+    <div id="lista-produtos" class="produtos-grid"></div>
+</div>
+
+<div id="carrinho" class="carrinho">
+    <h3>Carrinho</h3>
+    <ul id="itens-carrinho"></ul>
+    <div class="total">Total: R$ <span id="total">0.00</span></div>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
