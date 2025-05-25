@@ -38,7 +38,7 @@ export async function buscarDocumentosPorId(colecao,id) {
 }
 
 //Atualizar (Por ID)
-export async function atualizarDocumntos(colecao,id, dadosAtualizados) {
+export async function atualizarDocumentos(colecao,id, dadosAtualizados) {
   const docRef = doc(db, colecao, id);
   await updateDoc(docRef, dadosAtualizados);
   return "Produto atualizado com sucesso";
