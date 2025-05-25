@@ -44,8 +44,6 @@ function pegarCategoriaenviada() {
 }
 
 
-
-
 function gerarCategorias(lista) {
     const div_categoria = document.getElementById('categoria');
     div_categoria.innerHTML = '<button class="botao" onclick="filtrarCategoria(\'todos\')">Todos</button>';
