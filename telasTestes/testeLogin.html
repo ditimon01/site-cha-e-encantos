@@ -30,6 +30,7 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
+    
     let idToken = null;
 
     document.getElementById('loginGoogle').onclick = async () => {
@@ -38,6 +39,7 @@
         const result = await auth.signInWithPopup(provider);
         const user = result.user;
         idToken = await user.getIdToken();
+        sessionStorage.setItem('idToken', idToken);
         alert(`Logado como: ${user.email}`);
         document.getElementById('fazerPost').disabled = false;
         document.getElementById('deletarProduto').disabled = false;
@@ -47,34 +49,15 @@
       }
     };
 
-    document.getElementById('fazerPost').onclick = async () => {
-      if (!idToken) {
+
+    document.getElementById('fazerPost').onclick = () => {
+      if(!idToken) {
         alert('Faça login primeiro!');
         return;
       }
+      window.location.href = '../telaCadastroProduto/telaCadastroProduto.html';
+    }
 
-      const dadosProduto = {
-        nome: "Chá Verde",
-        preco: 15.9,
-        descricao: "Chá natural de alta qualidade"
-      };
-
-      try {
-        const response = await fetch('https://site-cha-e-encantos-production.up.railway.app/produtos', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + idToken
-          },
-          body: JSON.stringify(dadosProduto)
-        });
-
-        const json = await response.json();
-        alert('Resposta da API: ' + JSON.stringify(json));
-      } catch (error) {
-        alert('Erro na requisição: ' + error.message);
-      }
-    };
 
     document.getElementById('deletarProduto').onclick = async () => {
         if (!idToken) {
