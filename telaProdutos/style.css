@@ -1,0 +1,143 @@
+.produtos-container {
+    background-color: #fbf8e4;
+    padding: 2rem;
+    color: #2D4C36;
+}
+
+.produtos-container h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: #835C3B;
+}
+
+.filtros {
+    text-align: center;
+    margin-bottom: 1rem;
+
+}
+
+.filtros div {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    background-color: #6b8e23; /* Verde oliva */
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background-color: #556b2f; /* Verde mais escuro */
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #3e4f1c;
+    transform: scale(0.98);
+}
+
+.botao-adicionar {
+    background-color: #d2691e; /* Marrom queimado */
+}
+
+.botao-adicionar:hover {
+    background-color: #a0522d;
+}
+
+.botao-adicionar:active {
+    background-color: #7b3f1b;
+}
+
+.produtos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.produto {
+    background-color: #faf7e6;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 280px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.produto img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 12px;
+}
+
+.produto h3 {
+    color: #835C3B;
+    margin: 0.5rem 0;
+}
+
+.produto p {
+    text-align: center;
+    color: #445e4b;
+    font-size: 0.9rem;
+}
+
+.preco {
+    font-weight: bold;
+    color: #B15024;
+    margin: 0.3rem 0;
+}
+
+.botao-adicionar {
+    background-color: #835C3B;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-adicionar:hover {
+    background-color: #a2704e;
+}
+
+.carrinho {
+    background-color: #fff;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.carrinho h3 {
+    color: #835C3B;
+}
+
+.carrinho ul {
+    list-style: none;
+    padding: 0;
+}
+
+.carrinho li {
+    margin: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+.total {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #B15024;
+}
