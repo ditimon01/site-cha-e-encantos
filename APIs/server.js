@@ -1,10 +1,10 @@
 import http from "http";
 import {
-  adicionarProduto,
-  listarProdutos,
-  buscarProdutoPorId,
-  atualizarProduto,
-  deletarProduto,
+  adicionarDocumento,
+  listarDocumentos,
+  buscarDocumentosPorId,
+  atualizarDocumentos,
+  deletarDocumentos,
 } from "./API.js";
 
 import { verificarAutenticacao, verificarAdmin } from "./admin.js";
