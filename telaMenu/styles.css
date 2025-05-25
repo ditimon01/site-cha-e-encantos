@@ -51,17 +51,31 @@ body{
 
 .icons{
   flex: 2 1 200px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
 }
 
 .icons div{
-    font-size: 0.9rem;
-    color: #2D4C36;
-    text-align: center;
-    cursor: pointer;
+  display: flex;
+  font-size: 0.9rem;
+  color: #2D4C36;
+  text-align: center;
+  align-items: center;
+}
+
+.icons :has(:hover){
+  cursor: pointer;
+}
+
+.icons img{
+  height: 2rem;
+  max-height: 30px;
+}
+
+.grande {
+  transform: scale(0.8);
 }
 
 .menu {
@@ -80,6 +94,11 @@ body{
   color: #2D4C36;
   text-align: center;
   transition: transform 0.2s;
+}
+
+.menu-item a{
+  text-decoration: none;
+  color: #2D4C36;
 }
 
 

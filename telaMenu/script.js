@@ -53,7 +53,7 @@ function ajusteCarrossel() {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - carrossel.offsetLeft;
-    const walk = (x - startX) * 1.5; // velocidade do arrasto
+    const walk = (x - startX) * 1.5;
     carrossel.scrollLeft = scrollLeft - walk;
   });
 
