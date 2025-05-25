@@ -3,16 +3,15 @@
 import { db } from "../firebase.js";
 import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 
-const colecao = "produtos";
 
 //cria (adicionar)
-export async function adicionarProduto(dados) {
+export async function adicionarDocumento(colecao, dados) {
   const docRef = await addDoc(collection(db, colecao), dados);
   return docRef.id;
 }
 
 //lista todos os produtos
-export async function listarProdutos() {
+export async function listarDocumentos(colecao) {
   const querySnapshot = await getDocs(collection(db, colecao));
   const produtos = [];
   querySnapshot.forEach((doc) => {
@@ -22,7 +21,7 @@ export async function listarProdutos() {
 }
 
 //ler um produto pelo ID
-export async function buscarProdutoPorId(id) {
+export async function buscarDocumentosPorId(colecao,id) {
   try{
     const docRef = doc(db, colecao, id);
     const docSnap = await getDoc(docRef);
@@ -39,14 +38,14 @@ export async function buscarProdutoPorId(id) {
 }
 
 //Atualizar (Por ID)
-export async function atualizarProduto(id, dadosAtualizados) {
+export async function atualizarDocumntos(colecao,id, dadosAtualizados) {
   const docRef = doc(db, colecao, id);
   await updateDoc(docRef, dadosAtualizados);
   return "Produto atualizado com sucesso";
 }
 
 //Deletar (Por ID)
-export async function deletarProduto(id) {
+export async function deletarDocumentos(colecao,id) {
   const docRef = doc(db, colecao, id);
   await deleteDoc(docRef);
   return "Produto deletado com sucesso";
