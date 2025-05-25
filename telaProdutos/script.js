@@ -1,3 +1,18 @@
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+
+
+
 const URL_API = 'https://site-cha-e-encantos-production.up.railway.app/produtos'
 
 let produtos = [];
@@ -23,9 +38,17 @@ async function carregarProdutos() {
 }
 
 
+function pegarCategoriaenviada() {
+    const categoria_temp = new URLSearchParams(window.location.search);
+    return categoria_temp.get('categoria') || 'todos';
+}
+
+
+
+
 function gerarCategorias(lista) {
     const div_categoria = document.getElementById('categoria');
-    div_categoria.innerHTML = '<button onclick="filtrarCategoria(\'todos\')">Todos</button>';
+    div_categoria.innerHTML = '<button class="botao" onclick="filtrarCategoria(\'todos\')">Todos</button>';
 
     const categoriasSeparadas = new Set();
 
@@ -103,5 +126,9 @@ function atualizarCarrinho() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    carregarProdutos();
-});
+    carregarProdutos().then(() => {
+        const categoria = pegarCategoriaenviada();
+        filtrarCategoria(categoria);
+    })
+
+})
