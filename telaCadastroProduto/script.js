@@ -1,5 +1,7 @@
 
 
+
+
   const firebaseConfig = {
     apiKey: "AIzaSyBSkzmG4PkefRFdvmDQopUlibyhonBI0t4",
     authDomain: "site-cha-e-encantos.firebaseapp.com",
@@ -46,7 +48,14 @@ form.addEventListener('submit', async  (e) => {
   const descricao = form.descricao.value.trim();
   const preco = parseFloat(form.preco.value);
   const imagemCaminho = form.imagemCaminho.value.trim();
-  const categorias = form.categoria.value.split(',').map(cat => cat.trim().toLowerCase());
+
+  let categorias = form.categoria.value.split(',').map(cat => cat.trim().toLowerCase()).filter(cat => cat.length > 0);
+
+  if(document.getElementById("categoriaVovo").checked) {
+    categorias.push('chá da vovó');
+  }
+
+
   const estoque = parseInt(form.estoque.value);
   const ativo = form.ativo.checked;
 
@@ -72,7 +81,8 @@ form.addEventListener('submit', async  (e) => {
         });
 
         const json = await response.json();
-        alert('Resposta da API: ' + JSON.stringify(json));
+        alert('Produto cadastrado com sucesso!');
+        form.reset();
     } catch (error) {
         alert('Erro na requisição: ' + error.message);
     }
