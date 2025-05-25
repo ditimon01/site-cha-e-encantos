@@ -5,11 +5,13 @@ import 'dotenv/config';
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+initializeApp({
+  credential: cert(serviceAccount),
 });
 
-export const adminAuth = getAuth();
+const auth = getAuth();
+
+export const adminAuth = auth;
 
 const listaAdmins = [
   'fonsecavinicius12@gmail.com'
