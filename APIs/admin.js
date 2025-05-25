@@ -1,17 +1,23 @@
 import { initializeApp, cert } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
+import 'dotenv/config';
+import fs from 'fs';
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
-const listaAdmins = [
-  'fonsecavinicius12@gmail.com'
-];
+const serviceAccount = JSON.parse(
+  fs.readFileSync('./APIs/chave.json')
+)
 
 initializeApp({
   credential: cert(serviceAccount),
 });
 
-export const adminAuth = getAuth();
+const auth = getAuth();
+
+const listaAdmins = [
+  'fonsecavinicius12@gmail.com'
+];
+
 
 export async function verificarAutenticacao(req) {
   const authHeader = req.headers['authorization'];
@@ -25,7 +31,7 @@ export async function verificarAutenticacao(req) {
   const idToken = authHeader.split(' ')[1];
 
   try {
-    const decodedToken = await adminAuth.verifyIdToken(idToken);
+    const decodedToken = await auth.verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
     const err = new Error('Token inválido ou expirado');
@@ -37,7 +43,7 @@ export async function verificarAutenticacao(req) {
 
 export async function verificarAdmin(req) {
   
-    const decodedToken = await adminAuth.verifyIdToken(req);
+    const decodedToken = await auth.verifyIdToken(req);
     const email = decodedToken.email;
 
     if(!listaAdmins.includes(email)) {

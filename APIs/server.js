@@ -11,8 +11,9 @@ import { verificarAutenticacao, verificarAdmin } from "./admin.js";
 
 const port = process.env.PORT || 3000;
 
+
 const server = http.createServer(async (req, res) => {
-  // Habilita CORS //nao sabemos ainda oq é.
+  // Habilita CORS 
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -20,7 +21,7 @@ const server = http.createServer(async (req, res) => {
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  // Responde pré-requests de CORS //nao sabemos ainda oq é.
+  // Responde pré-requests de CORS
   if (req.method === "OPTIONS") {
     res.writeHead(204);
     res.end();
