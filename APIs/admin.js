@@ -17,7 +17,9 @@ export async function verificarAutenticacao(req) {
   const authHeader = req.headers['authorization'];
 
   if(!authHeader || !authHeader.startsWith('Bearer ')){
-    throw new Error('Não autorizado: Token ausente');
+    const error = new Error('Não autorizado: Token ausente');
+    error.status = 401;
+    throw error;
   }
 
   const idToken = authHeader.split(' ')[1];
@@ -26,30 +28,24 @@ export async function verificarAutenticacao(req) {
     const decodedToken = await adminAuth.verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
-    throw new Error('Token inválido ou expirado');
+    const err = new Error('Token inválido ou expirado');
+    err.status = 401;
+    throw err;
   }
 
 }
 
 export async function verificarAdmin(req) {
-  const authHeader = req.headers['authorization'];
-
-  if(!authHeader || !authHeader.startsWith('Bearer ')){
-    throw new Error('Não autorizado: Token ausente');
-  }
-
-  const idToken = authHeader.split(' ')[1];
-
-  try{
-    const decodedToken = await adminAuth.verifyIdToken(idToken);
+  
+    const decodedToken = await adminAuth.verifyIdToken(req);
     const email = decodedToken.email;
 
     if(!listaAdmins.includes(email)) {
-      throw new Error('Acesso Restrito: Você não é administrador')
+      const error = new Error('Acesso Restrito: Você não é administrador');
+      error.status = 403;
+      throw error;
     }
 
     return decodedToken;
-  } catch (error) {
-    throw new Error('Token inválido ou acesso negado')
-  }
+  
 }
