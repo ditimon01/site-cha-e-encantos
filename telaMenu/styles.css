@@ -2,6 +2,7 @@ body{
     margin:0;
     font-family: 'Inter', sans-serif;
     background-color: #f9f9f9;
+    overflow-x: hidden;
 }
 
 .top-bar{
@@ -16,30 +17,44 @@ body{
 
 .header{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #fbf8e4;
+    gap: 1rem;
+}
+
+.logo {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: center;
 }
 
 .logo img{
-    font-family: Playfair display, serif;
-    font-size: 1.8rem;
-    color: #2D4C36;
     height: 150px;
-    display: block;
-  }
+}
+
+.search-box {
+  flex: 2 1 300px;
+  display: flex;
+  justify-content: center;
+}
 
 .search-box input{
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 .icons{
+  flex: 2 1 200px;
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .icons div{
@@ -102,6 +117,7 @@ body{
 
 
 .menu-toggle {
+  flex: 0 1 auto;
   background-color: #835C3B;
   color: white;
   padding: 0.5rem 1rem;
@@ -109,7 +125,6 @@ body{
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem;
 }
 
 .sidebar {
@@ -163,7 +178,6 @@ body{
   color: #4c312d;
   text-decoration: underline;
 }
-
 
 
 .sidebar a {
@@ -240,7 +254,7 @@ body{
 .produto h3 {
   font-size: 1.2rem;
   color: #835C3B;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
@@ -255,17 +269,16 @@ body{
   background-color: #faf7e6;
   border-radius: 12px;
   padding: 1rem;
-  width: 250px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  min-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
+  flex: 0 0 auto;
+  width: 280px;
 }
 
 .produto img {
   width: 100%;
+  height: auto;
   max-width: 200px;
   object-fit: contain;
   display: block;
@@ -274,11 +287,29 @@ body{
 
 }
 
+.produto h3, .produto p {
+  word-break: break-word;
+  text-align: center;
+}
+
+.produto p {
+  font-size: 0.95rem;
+  color: #445e4b;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
 .kitspromocionais{
   background-color: #fbf8e4;
   padding: 2rem;
   color: #445e4b;
 }
+
 .kits-promocionais h2 {
   margin-left: 3%;
   font-size: 2rem;
@@ -311,19 +342,57 @@ body{
   text-align: center;
 }
 
-.kits promocionais{
+.carrossel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   background-color: #fbf8e4;
-  padding: 2rem;
-  color: #445e4b;
-}
-.kits-promocionais h2 {
-  margin-left: 3%;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
-  color: #835C3B;
-  text-align: center;
 }
 
+.carrossel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  justify-content: center;
+}
 
+.carrossel::-webkit-scrollbar {
+  display: none;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #835C3B;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+.seta:hover {
+  background-color: #A2704E;
+}
+
+.seta.esquerda {
+  left: 10px;
+}
+
+.seta.direita {
+  right: 10px;
+}
 

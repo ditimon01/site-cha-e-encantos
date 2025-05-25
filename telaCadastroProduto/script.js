@@ -58,6 +58,7 @@ form.addEventListener('submit', async  (e) => {
 
   const estoque = parseInt(form.estoque.value);
   const ativo = form.ativo.checked;
+  const destaque = form.destaque.checked;;;
 
   const produto = {
     nome,
@@ -67,6 +68,7 @@ form.addEventListener('submit', async  (e) => {
     categoria: categorias,
     estoque,
     ativo,
+    destaque,
     criadoEm: new Date().toISOString()
   };
 
