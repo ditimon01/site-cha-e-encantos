@@ -47,12 +47,6 @@ function getCategorias(produto) {
 }
 
 
-function pegarCategoriaenviada() {
-    const categoria_temp = new URLSearchParams(window.location.search);
-    return categoria_temp.get('categoria') || 'todos';
-}
-
-
 function gerarCategorias(lista) {
     const div_categoria = document.getElementById('categoria');
     div_categoria.innerHTML = '<button class="botao" onclick="filtrarCategoria(\'todos\')">Todos</button>';
@@ -177,6 +171,16 @@ function faltamInfos(data) {
   return camposObrigatorios.some(campo => !data[campo] || data[campo].trim() === '');
 }
 
+function filtrarPorBusca(termo) {
+    const termoLower = termo.toLowerCase();
+    const filtrados = produtos.filter(p => 
+        p.nome.toLowerCase().includes(termoLower) ||
+        p.descricao.toLowerCase().includes(termoLower)
+    );
+
+    renderizarProdutos(filtrados);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const conta = document.getElementById('minha-conta');
     const contaTexto = conta.querySelector('span');
@@ -184,8 +188,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     carregarProdutos().then(() => {
-        const categoria = pegarCategoriaenviada();
         filtrarCategoria(categoria);
+        const params = new URLSearchParams(window.location.search);
+        const termoBusca = params.get('busca');
+
+        if (termoBusca) {
+            filtrarPorBusca(termoBusca);
+        }
     })
     
       /*verifica login*/

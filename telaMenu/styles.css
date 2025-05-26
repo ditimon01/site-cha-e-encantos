@@ -36,13 +36,13 @@ body{
 }
 
 .search-box{
-  flex: 2 1 300px;
+  flex: 2 1 400px;
   display: flex;
   justify-content: center;
 }
 
 #formBusca {
-  flex: 2 1 300px;
+  flex: 2 1 400px;
   display: flex;
   justify-content: center;
 }
