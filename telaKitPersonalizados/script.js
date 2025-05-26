@@ -12,7 +12,6 @@ async function pegarToken() {
     return token;
 }
 
-
 window.onload = async () => {
     await verificarAdmin();
     await carregarProdutos();
@@ -22,9 +21,8 @@ async function verificarAdmin() {
     const token = localStorage.getItem("token");
     if (!token) {
         alert("Acesso negado. Faça login.");
-        window.location.href = "/login.html";
+        window.location.href = "../telaMenu/Menu.html";
     }
-    // Aqui poderia validar token no backend
 }
 
 async function carregarProdutos() {
@@ -62,22 +60,21 @@ function atualizarTotal() {
         }
     });
 
-    const totalComDesconto = total * 0.85;
+    const totalComDesconto = total * 0.9;
     document.getElementById("valor-total").innerText = totalComDesconto.toFixed(2);
 }
 
 document.getElementById("kit-form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const descricao = document.getElementById("descricao").value;
+    const nome = document.getElementById("nome").value.trim();
+    const descricao = document.getElementById("descricao").value.trim();
     const total = parseFloat(document.getElementById("valor-total").innerText);
 
     if (produtosSelecionados.length === 0) {
         alert("Selecione pelo menos um produto.");
         return;
     }
-
 
     const kit = {
         nome,
@@ -115,4 +112,3 @@ function logout() {
     localStorage.removeItem("token");
     window.location.href = "/login.html";
 }
-

@@ -120,9 +120,10 @@ function renderizarKits(lista){
       kitDiv.classList.add('produto');
 
       kitDiv.innerHTML = `
-          
-          <div class="preco">R$ ${kit.preco.toFixed(2)}</div>
-          <div class="parcelado">ou 3x de R$ ${(kit.preco / 3).toFixed(2)}</div>
+          <img src="${kit.descricao}" alt="${kit.nome}">
+          <h3>${kit.nome}</h3>
+          <div class="preco">R$ ${kit.valor.toFixed(2)}</div>
+          <div class="parcelado">ou 3x de R$ ${(kit.valor / 3).toFixed(2)}</div>
       `;
 
       container.appendChild(kitDiv);
@@ -143,7 +144,7 @@ function faltamInfos(data) {
 
 document.addEventListener('DOMContentLoaded', async () => {
   const conta = document.getElementById('minha-conta');
-const contaTexto = conta.querySelector('span');
+  const contaTexto = conta.querySelector('span');
   const botaoSair = document.getElementById('logout');
 
  /*produtos*/
