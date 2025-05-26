@@ -173,23 +173,30 @@ body{
 }
 
 .produtos-container h2 {
+  margin-top: 3rem;
     text-align: center;
     font-family: 'Playfair Display', serif;
     color: #835C3B;
+    border-bottom: 2px solid ;
+    
 }
 
 .filtros {
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
     margin-bottom: 1rem;
-
+    align-items: center;
+    justify-items: center;
 }
 
 .filtros div {
-    padding: 0.5rem;
     display: flex;
-    justify-content: space-around;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
-
 .botao {
     background-color: #6b8e23; /* Verde oliva */
     color: white;
