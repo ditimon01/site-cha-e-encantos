@@ -282,3 +282,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById("formBusca");
+  const input = document.getElementById("searchInput");
+
+  if (form && input) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const termo = input.value.trim();
+      if (termo !== "") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("busca", termo);
+        window.location.href = url.toString(); // recarrega com nova busca
+      }
+    });
+  }
+});
