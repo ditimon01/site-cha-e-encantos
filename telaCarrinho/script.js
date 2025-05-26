@@ -1,58 +1,54 @@
-const API_URL = "http://localhost:3000"; // Ajuste se estiver em outro domínio
-const token = localStorage.getItem("token");
 
-document.addEventListener("DOMContentLoaded", carregarCarrinho);
+const API_URL = "https://site-cha-e-encantos-production.up.railway.app";
 
-async function carregarCarrinho() {
-  try {
-    const resposta = await fetch(`${API_URL}/usuario`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
 
-    if (!resposta.ok) {
-      throw new Error("Falha ao buscar usuário.");
+import { login, logout, checaLogin } from '../APIs/autenticacao.js';
+import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db } from '../APIs/autenticacao.js';
+
+
+async function carregarCarrinho(id) {
+   try {
+    const container = document.querySelector(".cart-items");
+    container.innerHTML = ""; // limpa antes de carregar
+
+    const carrinhoRef = collection(db, "usuarios", id, "carrinho");
+    const snapshot = await getDocs(carrinhoRef);
+
+    const carrinho = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    if (carrinho.length === 0) {
+      container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+      return;
     }
 
-    const usuario = await resposta.json();
-    const carrinho = usuario.carrinho || [];
+    carrinho.forEach((produto) => {
+      const preco = produto.precoUnitario ?? 0;
+      const quantidade = produto.quantidade ?? 0;
 
-    exibirItensCarrinho(carrinho);
+      const item = document.createElement("div");
+      item.classList.add("cart-item");
+      item.innerHTML = `
+        <div class="item-info">
+          <h3>${produto.nome || "Produto sem nome"}</h3>
+          <p>Preço: R$ ${preco.toFixed(2)} | Quantidade: ${quantidade}</p>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+
     atualizarResumo(carrinho);
+
   } catch (error) {
     console.error("Erro ao carregar carrinho:", error);
     alert("Erro ao carregar carrinho.");
   }
 }
 
-function exibirItensCarrinho(carrinho) {
-  const container = document.querySelector(".cart-items");
-  container.innerHTML = ""; // Limpa
-
-  if (carrinho.length === 0) {
-    container.innerHTML = "<p>Seu carrinho está vazio.</p>";
-    return;
-  }
-
-  carrinho.forEach((produto) => {
-    const item = document.createElement("div");
-    item.classList.add("cart-item");
-    item.innerHTML = `
-      <div class="item-info">
-        <h3>${produto.nome}</h3>
-        <p>Preço: R$ ${produto.preco.toFixed(2)} | Quantidade: ${
-      produto.quantidade
-    }</p>
-      </div>
-    `;
-    container.appendChild(item);
-  });
-}
 
 function atualizarResumo(carrinho) {
   const subtotal = carrinho.reduce(
-    (acc, produto) => acc + produto.preco * produto.quantidade,
+    (acc, produto) => acc + (produto.precoUnitario ?? 0) * (produto.quantidade ?? 0),
     0
   );
   const frete = subtotal > 100 ? 0 : 15;
@@ -74,3 +70,95 @@ function atualizarResumo(carrinho) {
   totalSpans[0].textContent = "Total";
   totalSpans[1].textContent = `R$ ${total.toFixed(2)}`;
 }
+
+
+function faltamInfos(data) {
+  if (!data) return true; // dados inexistentes, falta tudo
+
+  const camposObrigatorios = ['nome', 'telefone', 'enderecos', 'cpf'];
+
+  return camposObrigatorios.some(campo => !data[campo] || data[campo].trim() === '');
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const conta = document.getElementById('minha-conta');
+    const contaTexto = conta.querySelector('span');
+    const botaoSair = document.getElementById('logout');
+
+    
+      /*verifica login*/
+      try {
+        const usuario = await checaLogin();
+    
+        if (usuario) {
+          const userDocRef = doc(db, "usuarios", usuario.uid);
+          const userDocSnap = await getDoc(userDocRef);
+    
+          botaoSair.style.display = 'inline-block'
+    
+    
+          if (userDocSnap.exists()) {
+            const dados = userDocSnap.data();
+            const nome = dados.nome?.split(' ')[0] || 'Conta';
+            contaTexto.textContent = nome;
+          }
+          
+          carregarCarrinho(usuario.uid);
+        }
+      } catch (erro) {
+        console.error('Erro ao verificar usuário:', erro);
+      }
+    
+    
+      /*botão da conta*/
+      conta.addEventListener('click', async () => {
+        try {
+          let user = await checaLogin();
+    
+          if (user) {
+            const userDocRef = doc(db, "usuarios", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+    
+            botaoSair.style.display = 'inline-block'
+    
+            if (!userDocSnap.exists() || faltamInfos(userDocSnap.data())) {
+              window.location.href = '../telaCadastro/Cadastro.html';
+            } else {
+              window.location.href = '../telaConta/conta.html';
+            }
+          } else {
+            const usuario = await login();
+            console.log('Logado como:', usuario.displayName);
+    
+            botaoSair.style.display = 'inline-block'
+    
+            const userDocRef = doc(db, "usuarios", usuario.uid);
+            const userDocSnap = await getDoc(userDocRef);
+    
+            if (!userDocSnap.exists() || faltamInfos(userDocSnap.data())) {
+              window.location.href = '../telaCadastro/Cadastro.html';
+            } else {
+              window.location.reload();
+            }
+          }
+        } catch (erro) {
+          console.error('Erro no login:', erro);
+          alert('Falha no login');
+        }
+      });
+    
+    
+      /*botão de sair da conta*/
+      botaoSair.addEventListener('click', async () => {
+        try{
+          await logout();
+          botaoSair.style.display = 'none';
+          contaTexto.textContent = 'Log In';
+          window.location.reload();
+        } catch (erro) {
+          console.error('Erro ao fazer logout:', erro);
+          alert('Erro ao sair da conta');
+        }
+      })
+    
+})
