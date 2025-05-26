@@ -35,13 +35,19 @@ body{
     height: 150px;
 }
 
-.search-box {
-  flex: 2 1 300px;
+.search-box{
+  flex: 2 1 400px;
   display: flex;
   justify-content: center;
 }
 
-.search-box input{
+#formBusca {
+  flex: 2 1 400px;
+  display: flex;
+  justify-content: center;
+}
+
+#formBusca input{
     width: 100%;
     max-width: 400px;
     padding: 0.5rem;

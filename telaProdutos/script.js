@@ -41,10 +41,9 @@ async function carregarProdutos() {
     }
 }
 
-
-function pegarCategoriaenviada() {
-    const categoria_temp = new URLSearchParams(window.location.search);
-    return categoria_temp.get('categoria') || 'todos';
+function getCategorias(produto) {
+  if (Array.isArray(produto.categoria)) return produto.categoria;
+    return String(produto.categoria).split(/[,|]/).map(c => c.trim());
 }
 
 
@@ -55,8 +54,12 @@ function gerarCategorias(lista) {
     let categoriasSeparadas = new Set();
 
     lista.forEach(p => {
-        const categoriasProduto = Array.isArray(p.categoria) ? p.categoria : String(p.categoria).split(/[,|]/).map(c => c.trim());
-        categoriasProduto.forEach(cat => categoriasSeparadas.add(cat));
+        // Cria uma função utilitária para extrair categorias do produto (evita repetir regex parsing)
+        const getCategorias = (produto) => {
+            if (Array.isArray(produto.categoria)) return produto.categoria;
+            return String(produto.categoria).split(/[,|]/).map(c => c.trim());
+        }
+        getCategorias(p).forEach(cat => categoriasSeparadas.add(cat));
     })
 
     const categorias = [...categoriasSeparadas];
@@ -95,12 +98,13 @@ function filtrarCategoria(categoria) {
         renderizarProdutos(produtos);
     }else{
         const filtrados = produtos.filter(p => {
-            const categorias = Array.isArray(p.categoria) ? p.categoria : String(p.categoria).split(/[,|]/).map(c => c.trim());
-            return categorias.includes(categoria);
+            
+            return getCategorias(p).includes(categoria);
             
         });
         renderizarProdutos(filtrados);
     }
+    
 }
 
 window.filtrarCategoria = filtrarCategoria;
@@ -167,6 +171,16 @@ function faltamInfos(data) {
   return camposObrigatorios.some(campo => !data[campo] || data[campo].trim() === '');
 }
 
+function filtrarPorBusca(termo) {
+    const termoLower = termo.toLowerCase();
+    const filtrados = produtos.filter(p => 
+        p.nome.toLowerCase().includes(termoLower) ||
+        p.descricao.toLowerCase().includes(termoLower)
+    );
+
+    renderizarProdutos(filtrados);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const conta = document.getElementById('minha-conta');
     const contaTexto = conta.querySelector('span');
@@ -174,8 +188,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     carregarProdutos().then(() => {
-        const categoria = pegarCategoriaenviada();
         filtrarCategoria(categoria);
+        const params = new URLSearchParams(window.location.search);
+        const termoBusca = params.get('busca');
+
+        if (termoBusca) {
+            filtrarPorBusca(termoBusca);
+        }
     })
     
       /*verifica login*/
