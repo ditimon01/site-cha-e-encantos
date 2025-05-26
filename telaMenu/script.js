@@ -1,8 +1,3 @@
-import { login, logout } from '../APIs/autenticacao.js';
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
-
-
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -15,6 +10,13 @@ function closeSidebar() {
   document.getElementById("overlay").classList.remove("active");
 }
 
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;
+
+
+import { login, logout } from '../APIs/autenticacao.js';
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
 
 
 
