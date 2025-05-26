@@ -279,6 +279,17 @@ document.addEventListener('DOMContentLoaded', async () => {
           alert('Erro ao sair da conta');
         }
       })
+
+    const ajuda = document.getElementById('ajuda');
+        ajuda.addEventListener('click', () => {
+        window.location.href = '../telaDuvidas/index.html';
+    });
+
+
+    const carrinho = document.getElementById('carrinho')
+    carrinho.addEventListener('click', () => {
+        window.location.href = '../telaCarrinho/carrinho.html';
+    })
     
 })
 
@@ -298,3 +309,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
