@@ -41,6 +41,11 @@ async function carregarProdutos() {
     }
 }
 
+function getCategorias(produto) {
+  if (Array.isArray(produto.categoria)) return produto.categoria;
+    return String(produto.categoria).split(/[,|]/).map(c => c.trim());
+}
+
 
 function pegarCategoriaenviada() {
     const categoria_temp = new URLSearchParams(window.location.search);
@@ -55,8 +60,12 @@ function gerarCategorias(lista) {
     let categoriasSeparadas = new Set();
 
     lista.forEach(p => {
-        const categoriasProduto = Array.isArray(p.categoria) ? p.categoria : String(p.categoria).split(/[,|]/).map(c => c.trim());
-        categoriasProduto.forEach(cat => categoriasSeparadas.add(cat));
+        // Cria uma função utilitária para extrair categorias do produto (evita repetir regex parsing)
+        const getCategorias = (produto) => {
+            if (Array.isArray(produto.categoria)) return produto.categoria;
+            return String(produto.categoria).split(/[,|]/).map(c => c.trim());
+        }
+        getCategorias(p).forEach(cat => categoriasSeparadas.add(cat));
     })
 
     const categorias = [...categoriasSeparadas];
@@ -95,12 +104,13 @@ function filtrarCategoria(categoria) {
         renderizarProdutos(produtos);
     }else{
         const filtrados = produtos.filter(p => {
-            const categorias = Array.isArray(p.categoria) ? p.categoria : String(p.categoria).split(/[,|]/).map(c => c.trim());
-            return categorias.includes(categoria);
+            
+            return getCategorias(p).includes(categoria);
             
         });
         renderizarProdutos(filtrados);
     }
+    
 }
 
 window.filtrarCategoria = filtrarCategoria;
