@@ -1,9 +1,8 @@
-
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  background-color: #fbf8e4;
-  color: #6d3806;
+body{
+    margin:0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
 }
 
 .top-bar{
@@ -80,6 +79,10 @@ body {
   padding: 2rem;
   max-width: 1000px;
   margin: auto;
+  background-color: #fbf8e4;
+  color: #6d3806;
+  box-shadow: 0 4px 8px rgba(0,0,0, 0.08);
+  border-radius: 0.9rem
 }
 
 .faq section:hover {
