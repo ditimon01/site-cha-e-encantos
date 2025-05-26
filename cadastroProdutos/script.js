@@ -27,7 +27,7 @@ onAuthStateChanged(auth, (user) => {
   });
 
   const email = user.email;
-  const listaAdmins = ['fonsecavinicius12@gmail.com'];
+  const listaAdmins = ['fonsecavinicius12@gmail.com', 'alinediasmarquesramos638@gmail.com'];
   if(!listaAdmins.includes(email)) {
     alert('Acesso negado. Página restrita a administradores.');
     window.location.href = '../telaMenu/Menu.html';
