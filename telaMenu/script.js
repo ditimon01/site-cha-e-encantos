@@ -70,7 +70,6 @@ function ajusteCarrossel() {
   }, { passive: false});
 
   function ajustarCentralizacao() {
-    const carrossel = document.querySelector('.carrossel');
     if (carrossel.scrollWidth <= carrossel.clientWidth) {
       carrossel.style.justifyContent = 'center';
     } else {
@@ -119,6 +118,11 @@ function renderizarProdutos(lista) {
     });
 
     ajusteCarrossel();
+}
+
+
+function renderizarKits(){
+  
 }
 
 

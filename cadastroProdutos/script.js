@@ -1,3 +1,20 @@
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;
+
+
+
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 
@@ -59,7 +76,7 @@ form.addEventListener('submit', async (e) => {
     const destaque = document.getElementById('destaque').checked;
 
 
-    if (!nome || categorias.length === 0 || isNaN(preco) || !descricao || isNaN(estoque) || !imagemCaminho) {
+    if (!nome || categoria.length === 0 || isNaN(preco) || !descricao || isNaN(estoque) || !imagemCaminho) {
         mensagem.textContent = "Preencha todos os campos corretamente.";
         return;
     }
