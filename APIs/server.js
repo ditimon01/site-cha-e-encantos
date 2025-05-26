@@ -150,8 +150,7 @@ const server = http.createServer(async (req, res) => {
 
 
 
-
-
+  
   // GET /usuarios → Lista todos
   if (url === "/usuarios" && method === "GET") {
     const usuarios = await listarDocumentos("usuarios");

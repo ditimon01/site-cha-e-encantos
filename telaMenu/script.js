@@ -1,3 +1,7 @@
+import { login, logout } from '../APIs/autenticacao.js';
+
+
+
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -113,3 +117,21 @@ function renderizarProdutos(lista) {
 
     ajusteCarrossel();
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const conta = document.getElementById('minha-conta');
+
+  conta.addEventListener('click', async () => {
+    try {
+      const usuario = await login();
+      console.log('Logado como:', usuario.displayName);
+
+      window.location.href = './Menu.html';
+    } catch (erro) {
+      console.error('Erro no login:', erro);
+      alert('Falha no login');
+    }
+  });
+});

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBSkzmG4PkefRFdvmDQopUlibyhonBI0t4",
@@ -18,7 +18,26 @@ const provider = new GoogleAuthProvider();
 
 export async function login() {
     const result = await signInWithPopup(auth, provider);
-    return result.user;
+    const user = result.user;
+
+    const userRef = doc(db, "usuarios", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if(!userSnap.exists()) {
+        await setDoc(userRef, {
+            nome: user.displayName,
+            email: user.email,
+            telefone: user.phoneNumber || null,
+            cpf: null,
+            enderecos: [],
+            criadoEm: new Date()
+        });
+        console.log("Usuário cadastrado com sucesso!");
+    }else {
+        console.log("Usuário já existe!");
+    }
+
+    return user;
 }
 
 export async function logout() {
