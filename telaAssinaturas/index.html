@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assinatura de Kits | Chá & Encantos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Assinatura Mensal de Kits</h1>
+    <p>Receba todos os meses um kit exclusivo com chás selecionados e surpresas encantadas.</p>
+
+    <form id="formAssinatura">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="contato">Telefone / WhatsApp</label>
+      <input type="text" id="contato" name="contato" required />
+
+      <label for="endereco">Endereço completo para entrega</label>
+      <textarea id="endereco" name="endereco" rows="3" required></textarea>
+
+      <label for="plano">Escolha seu plano:</label>
+      <select id="plano" name="plano" required>
+        <option disabled selected>Selecione</option>
+        <option value="essencial">Plano Essencial – R$ 49,90</option>
+        <option value="encantado">Plano Encantado – R$ 89,90</option>
+        <option value="premium">Plano Premium – R$ 139,90</option>
+      </select>
+
+      <label for="pagamento">Forma de pagamento:</label>
+      <select id="pagamento" name="pagamento" required>
+        <option disabled selected>Escolha</option>
+        <option value="pix">PIX</option>
+        <option value="cartao">Cartão de Crédito</option>
+        <option value="boleto">Boleto Bancário</option>
+      </select>
+
+      <label for="observacoes">Observações (opcional)</label>
+      <textarea id="observacoes" name="observacoes" rows="3"></textarea>
+
+      <button type="submit">Assinar</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

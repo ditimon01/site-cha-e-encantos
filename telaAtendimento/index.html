@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atendimento | Chá & Encantos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Agende seu Atendimento Natural</h1>
+    <p>Preencha o formulário abaixo e entraremos em contato para agendar sua consulta com uma de nossas terapeutas naturais parceiras.</p>
+
+    <form id="formAtendimento">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="contato">Telefone ou WhatsApp</label>
+      <input type="text" id="contato" name="contato" required />
+
+      <label for="preferencia">Qual seu interesse?</label>
+      <select id="preferencia" name="preferencia" required>
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="fitoterapia">Fitoterapia</option>
+        <option value="aromaterapia">Aromaterapia</option>
+        <option value="massoterapia">Massoterapia</option>
+        <option value="reiki">Reiki</option>
+        <option value="outros">Outros</option>
+      </select>
+
+      <label for="mensagem">Conte um pouco sobre sua necessidade:</label>
+      <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+      <button type="submit">Enviar Solicitação</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
