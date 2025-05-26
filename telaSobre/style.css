@@ -23,6 +23,76 @@ header p {
     color: #5b4631;
 }
 
+.top-bar{
+    background-color: #835C3B;
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fbf8e4;
+    gap: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.08);
+}
+
+.duvidas-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  height: 200px;          
+  text-align: center;
+}
+
+.duvidas-header h1 {
+  margin: 0;            
+  font-size: 2em;        
+}
+
+.logo {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img{
+    height: 150px;
+}
+
+.icons{
+  flex: 2 1 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.icons div{
+  display: flex;
+  font-size: 0.9rem;
+  color: #2D4C36;
+  text-align: center;
+  align-items: center;
+}
+
+.icons :has(:hover){
+  cursor: pointer;
+}
+
+.icons img{
+  height: 2rem;
+  max-height: 30px;
+}
+
 .descricao {
     max-width: 800px;
     margin: 2rem auto;
@@ -33,10 +103,11 @@ header p {
 }
 
 footer {
-    background-color: #d4c2a5;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    margin-top: 2rem;
-    color: #3b2e1e;
+  color: #6d3806;
+  text-align: center;
+  padding: 1rem;
+  position: 1rem;
+  bottom: 0;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
 }

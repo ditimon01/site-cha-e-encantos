@@ -1,31 +1,48 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: #694629;
+body{
+    margin:0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fffcec; 
-  padding: 20px;
+.top-bar{
+    background-color: #835C3B;
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fbf8e4;
+    gap: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.08);
 }
+
+
+.logo {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img{
+    height: 150px;
+}
+
 .icons{
   flex: 2 1 200px;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  justify-content: right;
-
+  justify-content: center;
 }
 
 .icons div{
@@ -115,6 +132,22 @@ body {
   margin-bottom: 10px;
 }
 
+#carrinho-text {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem; 
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+}
+
+#carrinho-text img{
+  height: 2rem;
+  max-height: 30px;
+}
+
 #checkout-btn {
   background-color: #4CAF50;
   color: white;
@@ -127,11 +160,11 @@ body {
   margin-top: 20px;
   transition: 0.5s;
 }
+
 #checkout-btn:hover{
   background-color: #2D4C36;
-  transform: scale(1.04);
+  transform: scale(1.0125);
   transition: 0.5s;
-
 }
 
 @media (max-width: 768px) {
