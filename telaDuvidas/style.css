@@ -1,0 +1,50 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #fbf8e4;
+  color: #6d3806;
+}
+
+.top-bar {
+  background-color: #fbf8e4;
+  color: #6d3806;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.faq {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.faq section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0, 0.08);
+  color : #6d3806;
+  min-height: 90px;
+  font-size: 1rem;
+}
+
+.faq h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  color: #6d3806;
+  text-align: center;
+  padding: 1rem;
+  position: 1rem;
+  bottom: 0;
+  width: 100%;
+}

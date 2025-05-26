@@ -155,5 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Erro no login:', erro);
       alert('Falha no login');
     }
+    
   });
+});
+
+const ajuda = document.getElementById('ajuda');
+ajuda.addEventListener('click', () => {
+  window.location.href = '../telaDuvidas/index.html';
 });
