@@ -19,21 +19,20 @@
             <input type="text" placeholder="Busque seu chá encantado...">
         </div>
         <div class ="icons">
-            <div>
-                <img src="../assets/ajuda.png" alt="">
+            <div id="ajuda">
+                <img src="../assets/ajuda.png" alt="Icone de Interrogacao">
                 <span>Dúvidas</span>
-            </div>
-            <div>
-                <img class="grande" src="../assets/estrela.png" alt="">
-                <span>Favoritos</span>
             </div>
             <div id="minha-conta">
                 <img class="grande" src="../assets/conta.png" alt="">
                 <span>Minha Conta</span>
             </div>
-            <div >
+            <div id="carrinho">
                 <img src="../assets/cesta.png" alt="">
                 <span>Cesta de compras</span>
+            </div>
+            <div>
+                <span id="logout" style="display: none;">Sair</span>
             </div>
         </div>
     </div>
@@ -41,7 +40,7 @@
     <aside class="sidebar" id="sidebar">
         <h2>Categorias</h2>
         <ul>
-            <li><a href="../telaProdutos/Produtos.html?categoria=digestivos">Digestivos</a></li>
+            <li><a href="../telaProdutos/Produtos.html?categoria=digestivo">Digestivos</a></li>
             <br>
             <li><a href="../telaProdutos/Produtos.html?categoria=antioxidante">Antioxidantes</a></li>
             <br>
@@ -137,75 +136,64 @@
         <div class="carrossel-container">
             <button class="seta esquerda">&#10094;</button>
             <div class="carrossel" id="carrossel">
-                <div class="produto">
-                    <img src="../assets/canabis.png" alt="Chá Calmante Cannabis">
-                    <h3>Chá Calmante Cannabis</h3>
-                    <p class="preco promo">R$ 39,90 <span class="preco-antigo">R$ 47,90</span></p>
-                    <p class="parcelado">até 4x de R$ 9,97 sem juros</p>
-                </div>
-                <div class="produto">
-                    <img src="../assets/chaiplante.png" alt="Chaiplante">
-                    <h3>Chá Detox Chaiplante</h3>
-                    <p class="preco promo">R$ 47,90 <span class="preco-antigo">R$ 59,90</span></p>
-                    <p class="parcelado">até 4x de R$ 11,97 sem juros</p>
-                </div>
-                <div class="produto">
-                    <img src="../assets/sereneta.png" alt="Chá Antioxidantes Sereneta">
-                    <h3>Chá Antioxidante Sereneta</h3>
-                    <p class="preco promo">R$ 39,90 <span class="preco-antigo">R$ 49,90</span></p>
-                    <p class="parcelado">até 4x de R$ 9,97 sem juros</p>
-                </div>
             </div>
             <button class="seta direita">&#10095;</button>
         </div>
         
     </section>
 
-<section class="kits-promocionais">
-  <h2>Kits Promocionais</h2>
-    <div class="produtos-grid">
-    <div class="produto">
-        <img src="../assets/kitXicaras.png" alt="Kit Jogo de Chá + Chá Chaiplante">
-        <h3>Kit Jogo de Chá + Chá Chaiplante</h3>
-        <p class="preco promo">R$ 116,90 <span class="preco-antigo">R$ 129,90</span></p>
-        <p class="parcelado">até 4x de R$ 29,22 sem juros</p>
-    </div>
-    <div class="produto">
-        <img src="../assets/kitInfusor.png" alt="Kit Chás e Calmaria + Infusor">
-        <h3>Kit Chás Menta e Calmaria + Infusor</h3>
-        <p class="preco promo">R$ 98,90 <span class="preco-antigo">R$ 109,90</span></p>
-        <p class="parcelado">até 4x de R$ 24,72 sem juros</p>
-    </div>
-    <div class="produto">
-        <img src="../assets/kitCaixa.png" alt="Kit Chá Verde + Lual de Eutonio">
-        <h3>Kit Chá Verde + Lual de Eutonio</h3>
-        <p class="preco promo">R$ 89,90 <span class="preco-antigo">R$ 99,90</span></p>
-        <p class="parcelado">até 4x de R$ 22,47 sem juros</p>
-    </div>
-    <div class="produto">
-        <img src="../assets/kitCinco.png" alt="Kit 5 Chás Avulsos">
-        <h3>Kit 5 Chás Avulsos</h3>
-        <p class="preco promo">R$ 119,90 <span class="preco-antigo">R$ 129,90</span></p>
-        <p class="parcelado">até 4x de R$ 29,97 sem juros</p>
-    </div>
+
+    <section class="kits-promocionais">
+        <h2>Kits Promocionais</h2>
+
+        <div class="carrossel-container">
+            <button class="seta esquerda">&#10094;</button>
+            <div class="carrossel" id="carrossel-2">
+                <div class="produto">
+                    <img src="../assets/kitXicaras.png" alt="Kit Jogo de Chá + Chá Chaiplante">
+                    <h3>Kit Jogo de Chá + Chá Chaiplante</h3>
+                    <p class="preco promo">R$ 116,90 <span class="preco-antigo">R$ 129,90</span></p>
+                    <p class="parcelado">até 4x de R$ 29,22 sem juros</p>
+                </div>
+                <div class="produto">
+                    <img src="../assets/kitInfusor.png" alt="Kit Chás e Calmaria + Infusor">
+                    <h3>Kit Chás Menta e Calmaria + Infusor</h3>
+                    <p class="preco promo">R$ 98,90 <span class="preco-antigo">R$ 109,90</span></p>
+                    <p class="parcelado">até 4x de R$ 24,72 sem juros</p>
+                </div>
+                <div class="produto">
+                    <img src="../assets/kitCaixa.png" alt="Kit Chá Verde + Lual de Eutonio">
+                    <h3>Kit Chá Verde + Lual de Eutonio</h3>
+                    <p class="preco promo">R$ 89,90 <span class="preco-antigo">R$ 99,90</span></p>
+                    <p class="parcelado">até 4x de R$ 22,47 sem juros</p>
+                </div>
+                <div class="produto">
+                    <img src="../assets/kitCinco.png" alt="Kit 5 Chás Avulsos">
+                    <h3>Kit 5 Chás Avulsos</h3>
+                    <p class="preco promo">R$ 119,90 <span class="preco-antigo">R$ 129,90</span></p>
+                    <p class="parcelado">até 4x de R$ 29,97 sem juros</p>
+                </div>
+            </div>
+            <button class="seta direita">&#10095;</button>
+        </div>
+    </section>
 
 
-        <section class="sobre-nos">
-            <h2>Sobre Nós</h2>
-            <p>O Chá & Encantos é mais do que uma loja de chás — é um espaço onde tradição, afeto e natureza se encontram.
+    <section class="sobre-nos">
+        <h2>Sobre Nós</h2>
+        <p>
+            O Chá & Encantos é mais do que uma loja de chás — é um espaço onde tradição, afeto e natureza se encontram.
+            Criado por Aurora, uma apaixonada por ervas e saberes populares, o projeto nasceu após anos de estudos em plantas medicinais, viagens pelo interior do Brasil e encontros com mestres da terra. Aqui, cada infusão carrega uma história única. Algumas vêm de rituais ancestrais, outras das receitas da vovó, e muitas de culturas encantadoras descobertas em caminhos distantes.
+            Cada erva é escolhida com cuidado, cada aroma tem um propósito. Nosso chá não é apenas para ser bebido — é para ser sentido.
+            Seja bem-vindo a esse lugar de calma, memória e magia. O Chá & Encantos é um convite para você desacelerar, cuidar de si e se reconectar com o que é natural e verdadeiro.
+        </p>
+    </section>
 
-Criado por Aurora, uma apaixonada por ervas e saberes populares, o projeto nasceu após anos de estudos em plantas medicinais, viagens pelo interior do Brasil e encontros com mestres da terra. Aqui, cada infusão carrega uma história única. Algumas vêm de rituais ancestrais, outras das receitas da vovó, e muitas de culturas encantadoras descobertas em caminhos distantes.
-
-Cada erva é escolhida com cuidado, cada aroma tem um propósito. Nosso chá não é apenas para ser bebido — é para ser sentido.
-
-Seja bem-vindo a esse lugar de calma, memória e magia. O Chá & Encantos é um convite para você desacelerar, cuidar de si e se reconectar com o que é natural e verdadeiro.</p>
-        </section>
 
     <footer>
-        <p>&copy; 2023 Chá & Encantos. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Chá & Encantos. Todos os direitos reservados.</p>
     </footer>
 
-    
        
 </body>
 <script type="module" src="script.js"></script>

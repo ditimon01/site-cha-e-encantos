@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="icons">
+        <div>
+          <img src="../assets/ajuda.png" alt="Ajuda" />
+          <span>Dúvidas</span>
+        </div>
+        <div id="minha-conta">
+          <img class="grande" src="../assets/conta.png" alt="Minha Conta" />
+          <span>Minha Conta</span>
+        </div>
+        <div>
+            <span id="logout" style="display: none;">Sair</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1>Seu Carrinho</h1>
+      <div class="container">
+        <div class="cart-items">
+          <!-- Itens do carrinho (replicáveis) -->
+          <div class="cart-item">
+            <h3>produtos</h3>
+            <div class="item-info">
+              <h3></h3>
+              <p></p>
+            </div>
+            <div class="item-actions"></div>
+          </div>
+          <!-- Repetir .cart-item quantas vezes quiser -->
+        </div>
+
+        <div class="summary">
+          <h2>Resumo</h2>
+          <div>
+            <span>Subtotal</span>
+            <span>R$</span>
+          </div>
+          <div>
+            <span>Frete</span>
+            <span>R$</span>
+          </div>
+          <hr />
+          <div>
+            <span></span>
+            <span></span>
+          </div>
+            <button id="checkout-btn" type="button">Finalizar Compra</button>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module" src="script.js"></script>
+</html>

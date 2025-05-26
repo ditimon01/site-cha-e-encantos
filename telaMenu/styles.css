@@ -157,7 +157,7 @@ body{
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px; /* esconde a barra */
+  left: -250px; 
   width: 250px;
   height: 100%;
   background-color: #ffffff;
@@ -239,6 +239,7 @@ body{
 }
 
 .sobre-nos{
+  margin-top: 5rem;
   background-color: #fbf8e4;
   padding: 2rem;
   color: #445e4b;
@@ -370,7 +371,7 @@ body{
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #fbf8e4;
+  background-color: #875f3f;
 }
 
 .carrossel {

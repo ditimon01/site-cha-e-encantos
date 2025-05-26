@@ -150,6 +150,8 @@ const server = http.createServer(async (req, res) => {
 
 
 
+
+
   
   // GET /usuarios → Lista todos
   if (url === "/usuarios" && method === "GET") {
@@ -261,6 +263,125 @@ const server = http.createServer(async (req, res) => {
     return;
   }
   
+
+
+
+
+
+    // GET /kits → Lista todos
+  if (url === "/kits" && method === "GET") {
+    const kits = await listarDocumentos("kits");
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(kits));
+    return;
+  }
+
+  // GET /kits/:id → Busca por ID
+  if (url.startsWith("/kits/") && method === "GET") {
+    const cleanUrl = url.split("?")[0];
+    const id = cleanUrl.split("/")[2];
+
+    if (!id || id.trim() === "") {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: "ID inválido" }));
+      return;
+    }
+
+    try {
+      const kit = await buscarDocumentosPorId("kits", id);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(kit));
+    } catch (error) {
+      console.error("Erro ao buscar kit:", error.message);
+      if (error.message === "Kit não encontrado!") {
+        res.writeHead(404);
+        res.end(JSON.stringify({ error: "Kit não encontrado" }));
+      } else {
+        res.writeHead(500);
+        res.end(
+          JSON.stringify({
+            error: "Erro interno ao buscar kit",
+            detalhe: error.message,
+          })
+        );
+      }
+    }
+    return;
+  }
+
+  // POST /kits → Cadastrar
+  if (url === "/kits" && method === "POST") {
+    try {
+      await verificarAutenticacao(req);
+    } catch (error) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: error.message }));
+      return;
+    }
+
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+    });
+    req.on("end", async () => {
+      try {
+        const dados = JSON.parse(body);
+        const id = await adicionarDocumento("kits", dados);
+        res.writeHead(201, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ mensagem: "Kit criado", id }));
+      } catch (error) {
+        res.writeHead(400);
+        res.end(JSON.stringify({ error: "Erro ao criar kit" }));
+      }
+    });
+    return;
+  }
+
+  // PUT /kits/:id → Atualizar
+  if (url.startsWith("/kits/") && method === "PUT") {
+    const id = url.split("/")[2];
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+    });
+    req.on("end", async () => {
+      try {
+        const dados = JSON.parse(body);
+        await atualizarDocumentos("kits", id, dados);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ mensagem: "Kit atualizado" }));
+      } catch (error) {
+        res.writeHead(400);
+        res.end(JSON.stringify({ error: "Erro ao atualizar kit" }));
+      }
+    });
+    return;
+  }
+
+  // DELETE /kits/:id → Deletar
+  if (url.startsWith("/kits/") && method === "DELETE") {
+    try {
+      await verificarAdmin(req);
+    } catch (error) {
+      res.writeHead(403, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: error.message }));
+      return;
+    }
+
+    const id = url.split("/")[2];
+    try {
+      await deletarDocumentos("kits", id);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ mensagem: "Kit deletado" }));
+    } catch (error) {
+      res.writeHead(400);
+      res.end(JSON.stringify({ error: "Erro ao deletar kit" }));
+    }
+    return;
+  }
+
+
+
 
 
 

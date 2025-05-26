@@ -48,3 +48,12 @@ export async function login() {
 export async function logout() {
     await signOut(auth);
 }
+
+export async function checaLogin() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      unsubscribe();
+      resolve(user);
+    }, reject);
+  });
+}

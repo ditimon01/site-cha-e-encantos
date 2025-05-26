@@ -13,7 +13,7 @@ import { getFirestore } from "firebase/firestore";
   };
 
 // Inicializa o Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Inicializa o Firestore
 export const db = getFirestore(app);

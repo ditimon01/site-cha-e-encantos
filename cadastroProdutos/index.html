@@ -7,29 +7,76 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="top-bar">
+    <div class ="top-bar">
         <div>@chaeencantos</div>
         <div>WhatsApp: (99)99999-9999</div>
     </div>
-    
+
     <div class="header">
-        <button class="menu-toggle">☰</button>
-        <div class="logo">
-            <div class="logo-icon">🍵</div>
-            <div class="logo-text">CHÁ &</div>
-            <div class="logo-subtext">Encantos</div>
-        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="logo"><a href="../telaMenu/Menu.html"><img src="../assets/logo.png" alt="logo"></a></div>
         <div class="search-box">
             <input type="text" placeholder="Busque seu chá encantado...">
         </div>
-        <div class="icons">
-            <div>Dúvidas?</div>
-            <div>Favoritos</div>
-            <div>Pedidos</div>
-            <div>Minha Conta</div>
-            <div>Cesta</div>
+        <div class ="icons">
+            <div id="ajuda">
+                <img src="../assets/ajuda.png" alt="Icone de Interrogacao">
+                <span>Dúvidas</span>
+            </div>
+            <div id="minha-conta">
+                <img class="grande" src="../assets/conta.png" alt="">
+                <span>Minha Conta</span>
+            </div>
+            <div >
+                <img src="../assets/cesta.png" alt="">
+                <span>Cesta de compras</span>
+            </div>
+            <div>
+                <span id="logout" style="display: none;">Sair</span>
+            </div>
         </div>
     </div>
+    
+    <aside class="sidebar" id="sidebar">
+        <h2>Categorias</h2>
+        <ul>
+            <li><a href="../telaProdutos/Produtos.html?categoria=digestivo">Digestivos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=antioxidante">Antioxidantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=diurético">Diuréticos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=calmante">Calmantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=isotônico">Isotônicos</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=chá da vovó">Chás da Vovó</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=detox">Detox</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=energizante">Energizantes</a></li>
+            <br>
+            <li><a href="../telaProdutos/Produtos.html?categoria=imunidade">Imunidade</a></li>
+            <br>
+        </ul>
+        <h2>Ajuda</h2>
+        <ul>
+            <br>
+            <li>Contato</li>
+            <br>
+            <li>Ajuda</li>
+            <br>
+            <li>Sobre Nós</li>
+            <br>
+            <li>Política de Privacidade</li>
+            <br>
+            <li>Termos de Uso</li>
+            <br>
+        </ul>
+
+    </aside>
+
+        <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
     <div class="main-content">
         <h1>Cadastro de Produto 🍵✨</h1>
@@ -37,6 +84,9 @@
             <form id="formProduto">
                 <label>Nome:</label>
                 <input type="text" id="nome" required>
+
+                <label>Categorias (separar por vírgula)</label>
+                <input type="text" id="categorias" required>
 
                 <label>Preço:</label>
                 <input type="number" id="preco" step="0.01" required>
@@ -46,6 +96,13 @@
 
                 <label>Estoque:</label>
                 <input type="number" id="estoque" required>
+
+                <label>Caminho da Imagem</label>
+                <input type="text" id="imagemCaminho" required>
+
+                <label><input type="checkbox" id="chaVovo"> Chá da vovó</label>
+                <label><input type="checkbox" id="ativo"> Ativo</label>
+                <label><input type="checkbox" id="destaque"> Destaque</label>
 
                 <button type="submit">Cadastrar Produto</button>
             </form>
@@ -57,6 +114,6 @@
         <p>&copy; 2023 Chá & Encantos. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

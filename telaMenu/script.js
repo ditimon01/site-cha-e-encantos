@@ -1,8 +1,3 @@
-import { login, logout } from '../APIs/autenticacao.js';
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
-
-
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -15,6 +10,13 @@ function closeSidebar() {
   document.getElementById("overlay").classList.remove("active");
 }
 
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;
+
+
+import { login, logout } from '../APIs/autenticacao.js';
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
 
 
 
@@ -117,6 +119,7 @@ function renderizarProdutos(lista) {
     });
 
     ajusteCarrossel();
+    ativarBusca();
 }
 
 
@@ -147,11 +150,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se não existe ou tem dados faltando, manda para o formulário
         window.location.href = '../telaCadastro/Cadastro.html';
       } else {
-        window.location.href = './Menu.html';
+        window.location.href = '../telaConta/conta.html';
       } 
     } catch (erro) {
       console.error('Erro no login:', erro);
       alert('Falha no login');
+    }
+    
+  });
+});
+
+const ajuda = document.getElementById('ajuda');
+ajuda.addEventListener('click', () => {
+  window.location.href = '../telaDuvidas/index.html';
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formBusca");
+  const input = document.getElementById("searchInput");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const termo = input.value.trim();
+    if (termo !== "") {
+      // Redireciona para a tela de produtos com o termo como parâmetro
+      window.location.href = `../telaProdutos/Produtos.html?busca=${encodeURIComponent(termo)}`;
     }
   });
 });
