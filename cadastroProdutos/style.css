@@ -3,7 +3,6 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #f9f9f9;
     min-height: 100vh;
-    overflow: hidden;
 }
 
 .top-bar {

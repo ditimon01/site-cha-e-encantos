@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Minha Conta</title>
+  <script type="module" src="minhaConta.js" defer></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+    }
+    button {
+      margin: 10px 0;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    .admin-options {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Minha Conta</h1>
+    <p><strong>Nome:</strong> <span id="userNome">Carregando...</span></p>
+    <p><strong>Email:</strong> <span id="userEmail">Carregando...</span></p>
+
+    <div class="admin-options" id="adminOptions" style="display: none;">
+      <h3>Opções de Administrador</h3>
+      <button onclick="window.location.href='../cadastroProdutos/index.html'">Adicionar Produtos</button>
+    </div>
+
+    <button onclick="logout()">Sair</button>
+  </div>
+</body>
+</html>

@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se não existe ou tem dados faltando, manda para o formulário
         window.location.href = '../telaCadastro/Cadastro.html';
       } else {
-        window.location.href = './Menu.html';
+        window.location.href = '../telaConta/conta.html';
       } 
     } catch (erro) {
       console.error('Erro no login:', erro);

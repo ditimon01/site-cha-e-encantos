@@ -1,20 +1,78 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = '../telaMenu/Menu.html';
+    return;
+  }
+
+  currentUser = user;
+
+  user.getIdToken().then((token) => {
+    localStorage.setItem('token', token)
+  });
+
+  const email = user.email;
+  const listaAdmins = ['fonsecavinicius12@gmail.com'];
+  if(!listaAdmins.includes(email)) {
+    alert('Acesso negado. Página restrita a administradores.');
+    window.location.href = '../telaMenu/Menu.html';
+  }
+});
+
+const token = localStorage.getItem('token'); 
+
 const form = document.getElementById('formProduto');
 const mensagem = document.getElementById('mensagem');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+    const nome = document.getElementById('nome').value.trim();
+    let categoria = document.getElementById('categorias').value.split(',').map(cat => cat.trim());
+    const preco = parseFloat(document.getElementById('preco').value);
+    const descricao = document.getElementById('descricao').value.trim();
+    const estoque = parseInt(document.getElementById('estoque').value);
+    const imagemCaminho = document.getElementById('imagemCaminho').value.trim();
+
+    const chaVovo = document.getElementById('chaVovo').checked;
+
+    if(chaVovo){
+      categoria.push("chá da vovó")
+    }
+
+    const ativo = document.getElementById('ativo').checked;
+    const destaque = document.getElementById('destaque').checked;
+
+
+    if (!nome || categorias.length === 0 || isNaN(preco) || !descricao || isNaN(estoque) || !imagemCaminho) {
+        mensagem.textContent = "Preencha todos os campos corretamente.";
+        return;
+    }
+
+
+
+
   const produto = {
-    nome: document.getElementById('nome').value,
-    preco: parseFloat(document.getElementById('preco').value),
-    descricao: document.getElementById('descricao').value,
-    estoque: parseInt(document.getElementById('estoque').value)
+    nome,
+    categoria,
+    preco,
+    descricao,
+    estoque,
+    imagemCaminho,
+    ativo,
+    destaque
   };
 
   try {
     const response = await fetch('https://site-cha-e-encantos-production.up.railway.app/produtos', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+    },
       body: JSON.stringify(produto)
     });
 

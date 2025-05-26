@@ -48,7 +48,7 @@ function gerarCategorias(lista) {
     const div_categoria = document.getElementById('categoria');
     div_categoria.innerHTML = '<button class="botao" onclick="filtrarCategoria(\'todos\')">Todos</button>';
 
-    const categoriasSeparadas = new Set();
+    let categoriasSeparadas = new Set();
 
     lista.forEach(p => {
         const categoriasProduto = Array.isArray(p.categoria) ? p.categoria : String(p.categoria).split(/[,|]/).map(c => c.trim());
