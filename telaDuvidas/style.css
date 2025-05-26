@@ -16,6 +16,52 @@ body {
     align-items: center;
 }
 
+.header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fbf8e4;
+    gap: 1rem;
+}
+
+.logo {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img{
+    height: 150px;
+}
+
+.icons{
+  flex: 2 1 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.icons div{
+  display: flex;
+  font-size: 0.9rem;
+  color: #2D4C36;
+  text-align: center;
+  align-items: center;
+}
+
+.icons :has(:hover){
+  cursor: pointer;
+}
+
+.icons img{
+  height: 2rem;
+  max-height: 30px;
+}
+
+
 .faq {
   padding: 2rem;
   max-width: 1000px;
