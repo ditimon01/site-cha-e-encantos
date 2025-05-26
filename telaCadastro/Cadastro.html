@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+  </head>
+  <body>
+      <div class="box">
+        <form id="formCadastro">
+          <h2>Cadastre-se</h2>
+          <div class="inputBx">
+            <span>Nome completo</span>
+            <input id="nome" type="text" placeholder="nome">
+          </div>
+          <div class="inputBx">
+            <span>digite seu endereço</span>
+            <input id="endereco" type="text" placeholder="Digite seu endereço">
+          </div>
+          <div class="inputBx">
+            <span>Digite seu CPF</span>
+            <input id="cpf" type="text" placeholder="000.000.000-00" minlength="11" maxlength="14">
+          </div>
+          <div class="inputBx">
+            <span>Digite seu telefone para contato</span>
+            <input id="telefone" type="text" placeholder="(00) 00000-0000" maxlength="15">
+            </div>
+          <div class="inputBx">  <input type="submit" value="Enviar">
+        </form>
+        <p id="mensagem"></p>
+      </div>
+   
+     
+  </body>
+  <script src="script.js"></script>
+</html>

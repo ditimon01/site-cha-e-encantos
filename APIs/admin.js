@@ -40,16 +40,26 @@ export async function verificarAutenticacao(req) {
 }
 
 export async function verificarAdmin(req) {
-  
-    const decodedToken = await auth.verifyIdToken(req);
-    const email = decodedToken.email;
+  const authHeader = req.headers['authorization'];
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    const error = new Error('Não autorizado: Token ausente');
+    error.status = 401;
+    throw error;
+  }
+  const idToken = authHeader.split(' ')[1];
 
-    if(!listaAdmins.includes(email)) {
+  try {
+    const decodedToken = await auth.verifyIdToken(idToken);
+    const email = decodedToken.email;
+    if (!listaAdmins.includes(email)) {
       const error = new Error('Acesso Restrito: Você não é administrador');
       error.status = 403;
       throw error;
     }
-
     return decodedToken;
-  
+  } catch (error) {
+    const err = new Error('Token inválido ou expirado');
+    err.status = 401;
+    throw err;
+  }
 }

@@ -1,5 +1,6 @@
 import { login, logout } from '../APIs/autenticacao.js';
-
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
 
 
 function toggleSidebar() {
@@ -120,6 +121,17 @@ function renderizarProdutos(lista) {
 
 
 
+function faltamInfos(data) {
+  if (!data) return true; // dados inexistentes, falta tudo
+
+  // Defina os campos obrigatórios aqui
+  const camposObrigatorios = ['nome', 'telefone', 'enderecos', 'cpf'];
+
+  // Retorna true se algum campo obrigatório estiver vazio ou undefined
+  return camposObrigatorios.some(campo => !data[campo] || data[campo].trim() === '');
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const conta = document.getElementById('minha-conta');
 
@@ -128,7 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const usuario = await login();
       console.log('Logado como:', usuario.displayName);
 
-      window.location.href = './Menu.html';
+      const userDocRef = doc(db, "usuarios", usuario.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (!userDocSnap.exists() || faltamInfos(userDocSnap.data())) {
+        // Se não existe ou tem dados faltando, manda para o formulário
+        window.location.href = '../telaCadastro/Cadastro.html';
+      } else {
+        window.location.href = './Menu.html';
+      } 
     } catch (erro) {
       console.error('Erro no login:', erro);
       alert('Falha no login');

@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBSkzmG4PkefRFdvmDQopUlibyhonBI0t4",
@@ -19,6 +19,11 @@ const provider = new GoogleAuthProvider();
 export async function login() {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
+
+    const token = await user.getIdToken();
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('uid', user.uid);
 
     const userRef = doc(db, "usuarios", user.uid);
     const userSnap = await getDoc(userRef);
