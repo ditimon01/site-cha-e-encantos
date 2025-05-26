@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #694629;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffcec; 
+  padding: 20px;
+}
+.header{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+.icons{
+  flex: 2 1 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: right;
+
+}
+
+.icons div{
+  display: flex;
+  font-size: 0.9rem;
+  color: #2D4C36;
+  text-align: center;
+  align-items: center;
+}
+
+.icons :has(:hover){
+  cursor: pointer;
+}
+
+.icons img{
+  height: 2rem;
+  max-height: 30px;
+}
+
+.grande {
+  transform: scale(0.8);
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cart-items {
+  flex: 2;
+
+  background-color: #ffffff; 
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity {
+  width: 50px;
+  padding: 5px;
+}
+
+.summary {
+  flex: 1;
+  background-color: #ffffff; 
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.summary h2 {
+  margin-bottom: 20px;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#checkout-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+#checkout-btn:hover{
+  background-color: #2D4C36;
+  transform: scale(1.04);
+  transition: 0.5s;
+
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
