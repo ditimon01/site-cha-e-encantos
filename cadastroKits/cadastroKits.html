@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de Kits - Chá & Encantos</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="top-bar">
+    <div>Admin - Cadastro de Kits</div>
+    <button class="menu-toggle" onclick="logout()">Sair</button>
+</div>
+
+<header class="header">
+    <div class="logo">
+        <img src="../assets/logo.png" alt="Chá & Encantos"/>
+    </div>
+    <h2>Cadastrar Novo Kit</h2>
+</header>
+
+<main class="container">
+    <form id="kit-form">
+        <label for="nome">Nome do Kit:</label>
+        <input type="text" id="nome" required/>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" required></textarea>
+
+        <label>Selecione os Produtos:</label>
+        <div id="produtos-lista" class="produtos-lista"></div>
+
+        <div class="total">
+            <strong>Valor Total com 30% de desconto: R$ <span id="valor-total">0.00</span></strong>
+        </div>
+
+        <button type="submit">Cadastrar Kit</button>
+    </form>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

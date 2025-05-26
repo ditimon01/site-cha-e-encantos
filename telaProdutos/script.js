@@ -282,3 +282,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
 })
 
+
+const ajuda = document.getElementById('ajuda');
+ajuda.addEventListener('click', () => {
+  window.location.href = '../telaDuvidas/index.html';
+});
+
+
+const carrinho = document.getElementById('carrinho')
+carrinho.addEventListener('click', () => {
+  window.location.href = '../telaCarrinho/carrinho.html';
+})
