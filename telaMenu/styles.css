@@ -323,6 +323,11 @@ body{
   flex-shrink: 0;
 }
 
+.produto:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
 .kitspromocionais{
   background-color: #fbf8e4;
   padding: 2rem;
