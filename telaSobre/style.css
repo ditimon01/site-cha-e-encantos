@@ -1,0 +1,42 @@
+
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #fff9f0;
+    color: #3b2e1e;
+}
+
+header {
+    background-color: #d4c2a5;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: #5b4631;
+}
+
+.descricao {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+footer {
+    background-color: #d4c2a5;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    color: #3b2e1e;
+}

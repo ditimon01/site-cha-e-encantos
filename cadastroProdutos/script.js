@@ -1,5 +1,16 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 
+const firebaseConfig = {
+    apiKey: "AIzaSyBSkzmG4PkefRFdvmDQopUlibyhonBI0t4",
+    authDomain: "site-cha-e-encantos.firebaseapp.com",
+    projectId: "site-cha-e-encantos",
+    storageBucket: "site-cha-e-encantos.firebasestorage.app",
+    messagingSenderId: "983006416430",
+    appId: "1:983006416430:web:8dbba5a8f82aacd19f59bf"
+};
+
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 let currentUser = null;
 
