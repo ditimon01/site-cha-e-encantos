@@ -132,9 +132,6 @@ async function adicionarCarrinhoFirestore(id, nome, preco) {
                 quantidade: increment(1),
                 subtotal: increment(preco)
             });
-            await updateDoc(userRef, {
-                totalCarrinho: increment(preco)
-            })
         } else {
             // Se não existe, cria o item
             await setDoc(itemRef, {
