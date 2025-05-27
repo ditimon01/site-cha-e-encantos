@@ -2,14 +2,16 @@ const API_URL = "https://site-cha-e-encantos-production.up.railway.app";
 let produtos = [];
 let produtosSelecionados = [];
 
-import { checaLogin } from "../APIs/autenticacao.js";
+import { login, logout, checaLogin } from '../APIs/autenticacao.js';
+import { db } from '../APIs/autenticacao.js'; // exporta db no autenticacao.js
+import { doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 async function pegarToken() {
     const user = await checaLogin();
     if(!user) return null;
 
     const token = await user.getIdToken();
-    return token;
+    return {token, uid: user.uid};
 }
 
 window.onload = async () => {
@@ -64,12 +66,95 @@ function atualizarTotal() {
     document.getElementById("valor-total").innerText = totalComDesconto.toFixed(2);
 }
 
+
+async function adicionarCarrinhoFirestore(id, nome, preco) {
+    const user = await checaLogin();
+    if (!user) {
+        alert('Faça login para adicionar ao carrinho.');
+        return;
+    }
+
+    const itemRef = doc(db, "usuarios", user.uid, "carrinho", id);
+    const userRef = doc(db, "usuarios", user.uid);
+
+    try {
+        const itemSnap = await getDoc(itemRef);
+        const userSnap = await getDoc(userRef);
+
+        if(!userSnap.exists() || userSnap.data().totalCarrinho === undefined){
+            await setDoc(userRef, { totalCarrinho: 0 }, { merge: true });
+        }
+
+        if (itemSnap.exists()) {
+            await updateDoc(itemRef, {
+                quantidade: increment(1),
+                subtotal: increment(preco)
+            });
+        } else {
+            await setDoc(itemRef, {
+                nome,
+                precoUnitario: preco,
+                quantidade: 1,
+                subtotal: preco
+            });
+        }
+
+        await updateDoc(userRef, {
+            totalCarrinho: increment(preco)
+        });
+
+    } catch (erro) {
+        console.error('Erro ao adicionar no carrinho:', erro);
+        alert('Erro ao adicionar no carrinho.');
+        throw erro;
+    }
+}
+
+
+
+async function adicionarKitAoCarrinho(kit) {
+  const user = await checaLogin();
+    if (!user) {
+        alert('Faça login para adicionar ao carrinho.');
+        return;
+    }
+
+    const kitId = `kit-${Date.now()}`; // ID único baseado em timestamp
+    const itemRef = doc(db, "usuarios", user.uid, "carrinho", kitId);
+    const userRef = doc(db, "usuarios", user.uid);
+
+    try {
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists() || userSnap.data().totalCarrinho === undefined) {
+            await setDoc(userRef, { totalCarrinho: 0 }, { merge: true });
+        }
+
+        await setDoc(itemRef, {
+            nome: kit.nome,
+            produtos: kit.produtos,
+            quantidade: 1,
+            subtotal: kit.valor
+        });
+
+        await updateDoc(userRef, {
+            totalCarrinho: increment(kit.valor)
+        });
+
+        alert("Kit personalizado adicionado ao carrinho!");
+        window.location.reload();
+
+    } catch (erro) {
+        console.error('Erro ao adicionar kit no carrinho:', erro);
+        alert('Erro ao adicionar kit no carrinho.');
+        throw erro;
+    }
+}
+
+
+
 document.getElementById("kit-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const nome = document.getElementById("nome").value.trim();
-    const descricao = document.getElementById("descricao").value.trim();
-    const total = parseFloat(document.getElementById("valor-total").innerText);
 
     if (produtosSelecionados.length === 0) {
         alert("Selecione pelo menos um produto.");
@@ -77,38 +162,17 @@ document.getElementById("kit-form").addEventListener("submit", async (e) => {
     }
 
     const kit = {
-        nome,
-        descricao,
+        nome: "kit personalizado",
         produtos: produtosSelecionados,
-        valor: total
+        valor: parseFloat(document.getElementById("valor-total").innerText)
     };
 
     try {
-        const token = await pegarToken();
-        const res = await fetch(`${API_URL}/kits`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify(kit)
-        });
-
-        if (res.ok) {
-            alert("Kit cadastrado com sucesso!");
-            window.location.reload();
-        } else {
-            const err = await res.json();
-            alert("Erro: " + err.error);
-        }
-    } catch (error) {
-        alert("Erro ao cadastrar kit.");
+        await adicionarKitAoCarrinho(kit);
+    } catch {
+        alert("Erro ao adicionar kit ao carrinho")
     }
+
 });
 
-window.logout = logout;
 
-function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "/login.html";
-}
