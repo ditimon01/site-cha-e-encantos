@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #4F6F56, #83B697);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.logo-container img {
+  width: 3rem; 
+  height: auto;
+}
+
+    .box {
+     position: relative; 
+     background-color: #fff;
+     padding: 3rem 2.5rem 2.5rem 2.5rem; 
+     border-radius: 1rem;
+     box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 25rem;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 3rem;
+    }
+
+    p{
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      margin: 2rem;
+      align-items: center;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+button.logout-btn {
+  display: block;
+  margin: 2rem auto 0 auto;
+  padding: 0.8rem 2rem;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.logout-btn:hover {
+  background-color: #c9302c;
+}
+
+.user-info p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.user-info strong {
+  color: #4F6F56;
+  font-weight: 600;
+}
+
+    .admin-options {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.admin-options h3 {
+  font-size: 1.2rem;
+  color: #4F6F56;
+  margin-bottom: 1rem;
+}
+
+.admin-options button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-options button:hover {
+  background-color: #4cae4c;
+}

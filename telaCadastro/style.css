@@ -6,20 +6,32 @@
 }
 
 body {
-  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  background: linear-gradient(to right, #4F6F56, #83B697);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.logo-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.logo-container img {
+  width: 3rem; 
+  height: auto;
+}
+
 .box {
+  position: relative; 
   background-color: #fff;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2.5rem 2.5rem 2.5rem; 
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 25rem;
 }
 
 form h2 {
@@ -49,7 +61,7 @@ form h2 {
 }
 
 .inputBx input[type="submit"] {
-  background-color: #6c63ff;
+  background-color: #8c5d28e0;
   color: white;
   border: none;
   cursor: pointer;
@@ -57,5 +69,5 @@ form h2 {
 }
 
 .inputBx input[type="submit"]:hover {
-  background-color: #5a52d4;
+  background-color: #8C5D28;
 }
