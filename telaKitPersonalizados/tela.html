@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte seu Kit | Chá & Encantos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Monte Seu Próprio Kit</h1>
+        <button onclick="logout()">Sair</button>
+    </header>
+
+    <main>
+        <form id="kit-form">
+            
+            <h2>Produtos Disponíveis</h2>
+            <div id="produtos-lista"></div>
+
+            <div class="total">
+                <strong>Total com 10% de desconto: R$ <span id="valor-total">0.00</span></strong>
+            </div>
+
+            <button type="submit">Criar Kit</button>
+        </form>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

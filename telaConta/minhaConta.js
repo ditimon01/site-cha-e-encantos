@@ -13,7 +13,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+
 const listaAdmins = ['fonsecavinicius12@gmail.com', 'alinediasmarquesramos638@gmail.com', 'thiagoeajds@gmail.com'];
+
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {

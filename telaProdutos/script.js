@@ -99,6 +99,27 @@ function renderizarProdutos(lista) {
 }
 
 
+function renderizarKits(lista) {
+    const container = document.getElementById('lista-kits');
+    container.innerHTML = "";
+
+    lista.forEach(kit => {
+        const kitDiv = document.createElement('div');
+        kitDiv.classList.add('produto');
+
+        kitDiv.innerHTML = `
+            <img src="${kit.descricao}" alt="${kit.nome}">
+            <h3>${kit.nome}</h3>
+            <div class="preco">R$ ${kit.valor.toFixed(2)}</div>
+            <div class="parcelado">ou 3x de R$ ${(kit.valor / 3).toFixed(2)}</div>
+            <button class="botao-adicionar onclick="adicionarCarrinho(\'${kit.id}\', \'${kit.nome}\', ${kit.valor})">Adicionar ao carrinnho</button>
+        `;
+
+        container.appendChild(kitDiv);
+    });
+}
+
+
 function filtrarCategoria(categoria) {
     if(categoria === 'todos') {
         renderizarProdutos(produtos);
@@ -191,16 +212,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     const conta = document.getElementById('minha-conta');
     const contaTexto = conta.querySelector('span');
     const botaoSair = document.getElementById('logout');
+    const botaoKits = document.getElementById('verKits');
+
+    try {
+    const response = await fetch('https://site-cha-e-encantos-production.up.railway.app/kits');
+        const kits = await response.json();
+        renderizarKits(kits);
+    } catch (error) {
+        console.error('Erro ao carregar kits:', error);
+    }
 
 
     carregarProdutos().then(() => {
         const params = new URLSearchParams(window.location.search);
         const categoria = params.get('categoria') || 'todos';
         const termoBusca = params.get('busca');
+        const kit = params.get('kits');;
 
         if (termoBusca) {
             filtrarPorBusca(termoBusca);
-        } else {
+        } else if(kit){
+            document.getElementById('lista-kits').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        }else{
             filtrarCategoria(categoria);
         }
     })
@@ -228,6 +264,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Erro ao verificar usuário:', erro);
       }
     
+
+
+      botaoKits.addEventListener('click', async () => {
+        document.getElementById('lista-kits').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+      })
+
+
+
     
       /*botão da conta*/
       conta.addEventListener('click', async () => {

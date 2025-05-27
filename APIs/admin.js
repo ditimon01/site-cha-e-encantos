@@ -15,7 +15,8 @@ export const adminAuth = auth;
 
 const listaAdmins = [
   'fonsecavinicius12@gmail.com', 
-  'alinediasmarquesramos638@gmail.com'
+  'alinediasmarquesramos638@gmail.com',
+  'thiagoeajds@gmail.com'
 ];
 
 export async function verificarAutenticacao(req) {

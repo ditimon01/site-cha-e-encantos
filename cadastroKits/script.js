@@ -2,6 +2,17 @@ const API_URL = "https://site-cha-e-encantos-production.up.railway.app";
 let produtos = [];
 let produtosSelecionados = [];
 
+import { checaLogin } from "../APIs/autenticacao.js";
+
+async function pegarToken() {
+    const user = await checaLogin();
+    if(!user) return null;
+
+    const token = await user.getIdToken();
+    return token;
+}
+
+
 window.onload = async () => {
     await verificarAdmin();
     await carregarProdutos();
@@ -28,7 +39,7 @@ async function carregarProdutos() {
             div.className = "produto-item";
             div.innerHTML = `
                 <span>${prod.nome} - R$ ${parseFloat(prod.preco).toFixed(2)}</span>
-                <input type="checkbox" value="${prod._id}" data-preco="${prod.preco}" onchange="atualizarTotal()"/>
+                <input type="checkbox" value="${prod.nome}" data-preco="${prod.preco}" onchange="atualizarTotal()"/>
             `;
             lista.appendChild(div);
         });
@@ -36,6 +47,8 @@ async function carregarProdutos() {
         alert("Erro ao carregar produtos");
     }
 }
+
+window.atualizarTotal = atualizarTotal;
 
 function atualizarTotal() {
     const checkboxes = document.querySelectorAll("#produtos-lista input[type=checkbox]");
@@ -49,7 +62,7 @@ function atualizarTotal() {
         }
     });
 
-    const totalComDesconto = total * 0.7;
+    const totalComDesconto = total * 0.85;
     document.getElementById("valor-total").innerText = totalComDesconto.toFixed(2);
 }
 
@@ -65,6 +78,7 @@ document.getElementById("kit-form").addEventListener("submit", async (e) => {
         return;
     }
 
+
     const kit = {
         nome,
         descricao,
@@ -73,11 +87,12 @@ document.getElementById("kit-form").addEventListener("submit", async (e) => {
     };
 
     try {
+        const token = await pegarToken();
         const res = await fetch(`${API_URL}/kits`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("token")
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(kit)
         });
@@ -93,6 +108,8 @@ document.getElementById("kit-form").addEventListener("submit", async (e) => {
         alert("Erro ao cadastrar kit.");
     }
 });
+
+window.logout = logout;
 
 function logout() {
     localStorage.removeItem("token");
