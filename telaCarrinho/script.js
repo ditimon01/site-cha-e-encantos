@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     carrinho.addEventListener('click', () => {
-      window.location.href = '../telaCarrinho/index.html';
+      window.location.href = '../telaCarrinho/carrinho.html';
     });
 
     voltar.addEventListener('click', () => {
