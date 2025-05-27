@@ -357,3 +357,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const ajuda = document.getElementById('ajuda');
+  const conta = document.getElementById('minha-conta');
+  const carrinho = document.getElementById('carrinho');
+  const voltar = document.getElementById('volta-menu');
+
+  if (ajuda) {
+    ajuda.addEventListener('click', () => {
+      window.location.href = '../telaAjuda/index.html';
+    });
+  }
+
+  if (minha-conta) {
+    conta.addEventListener('click', () => {
+      window.location.href = '../telaConta/conta.html';
+    });
+  }
+
+  if (carrinho) {
+    carrinho.addEventListener('click', () => {
+      window.location.href = '../telaCarrinho/index.html';
+    });
+  }
+
+  if (voltar) {
+    volta-menu.addEventListener('click', () => {
+      window.location.href = '../telaMenu/Menu.html';
+    });
+  }
+});
